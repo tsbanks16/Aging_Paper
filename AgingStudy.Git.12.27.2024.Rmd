@@ -1,0 +1,2317 @@
+---
+title: "RPL6.By.Region&Cell.Type.01.25.2024"
+author: "Tabitha"
+date: "2024-01-25"
+output: html_document
+---
+
+
+```{r Importing and merging initial data sets with assigned number and age groups}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+setwd("/Young/2a")
+A001.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A001.All <- read.csv("2-TH.afi_job99232-TH_object_results.csv", header = TRUE)
+A001.All$Animal <- "2"
+A001.All$AgeGroup <- "Young"
+A001.Sum$Animal <- "2"
+A001.Sum$AgeGroup <- "Young"
+names(A001.All) <- gsub("Gadph", "GAPDH", names(A001.All))
+names(A001.All) <- gsub("Th", "TH", names(A001.All))
+names(A001.All) <- gsub("Rpl6", "RPL6", names(A001.All))
+names(A001.Sum) <- gsub("Gadph", "GAPDH", names(A001.Sum))
+names(A001.Sum) <- gsub("Th", "TH", names(A001.Sum))
+names(A001.Sum) <- gsub("Rpl6", "RPL6", names(A001.Sum))
+
+setwd("/Young/2b")
+A002.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A002.All <- read.csv("2-VGLUT2.afi_job99242-TH_object_results.csv", header = TRUE)
+A002.All$Animal <- "2"
+A002.All$AgeGroup <- "Young"
+A002.Sum$Animal <- "2"
+A002.Sum$AgeGroup <- "Young"
+names(A002.All) <- gsub("Gadph", "GAPDH", names(A002.All))
+names(A002.All) <- gsub("Slc17a6", "VGLUT2", names(A002.All))
+names(A002.All) <- gsub("Rpl6", "RPL6", names(A002.All))
+names(A002.Sum) <- gsub("Gadph", "GAPDH", names(A002.Sum))
+names(A002.Sum) <- gsub("Slc17a6", "VGLUT2", names(A002.Sum))
+names(A002.Sum) <- gsub("Rpl6", "RPL6", names(A002.Sum))
+
+setwd("/Young/3a")
+A003.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A003.All <- read.csv("3-TH.afi_job99252-TH_object_results.csv", header = TRUE)
+A003.All$Animal <- "3"
+A003.All$AgeGroup <- "Young"
+A003.Sum$Animal <- "3"
+A003.Sum$AgeGroup <- "Young"
+names(A003.All) <- gsub("Gadph", "GAPDH", names(A003.All))
+names(A003.All) <- gsub("Rpl6", "RPL6", names(A003.All))
+names(A003.Sum) <- gsub("Gadph", "GAPDH", names(A003.Sum))
+names(A003.Sum) <- gsub("Rpl6", "RPL6", names(A003.Sum))
+
+
+setwd("/Young/3b")
+A004.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A004.All <- read.csv("3-VGLUT2.afi_job9927Indica Labs - FISH v3.0.4_object_results.csv", header = TRUE)
+A004.All$Animal <- "3"
+A004.All$AgeGroup <- "Young"
+A004.Sum$Animal <- "3"
+A004.Sum$AgeGroup <- "Young"
+names(A004.All) <- gsub("Gadph", "GAPDH", names(A004.All))
+names(A004.All) <- gsub("Slc17a6", "VGLUT2", names(A004.All))
+names(A004.All) <- gsub("Rpl6", "RPL6", names(A004.All))
+names(A004.Sum) <- gsub("Gadph", "GAPDH", names(A004.Sum))
+names(A004.Sum) <- gsub("Slc17a6", "VGLUT2", names(A004.Sum))
+names(A004.Sum) <- gsub("Rpl6", "RPL6", names(A004.Sum))
+
+setwd("/Young/4a")
+A005.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A005.All <- read.csv("4-TH.afi_job9928Indica Labs - FISH v3.0.4_object_results.csv", header = TRUE)
+A005.All$Animal <- "4"
+A005.All$AgeGroup <- "Young"
+A005.Sum$Animal <- "4"
+A005.Sum$AgeGroup <- "Young"
+names(A005.All) <- gsub("Gadph", "GAPDH", names(A005.All))
+names(A005.All) <- gsub("Th", "TH", names(A005.All))
+names(A005.All) <- gsub("Rpl6", "RPL6", names(A005.All))
+names(A005.Sum) <- gsub("Gadph", "GAPDH", names(A005.Sum))
+names(A005.Sum) <- gsub("Th", "TH", names(A005.Sum))
+names(A005.Sum) <- gsub("Rpl6", "RPL6", names(A005.Sum))
+
+
+setwd("/Young/4b")
+A006.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A006.All <- read.csv("4-VGLUT2.afi_job99422-v_object_results.csv", header = TRUE)
+A006.All$Animal <- "4"
+A006.All$AgeGroup <- "Young"
+A006.Sum$Animal <- "4"
+A006.Sum$AgeGroup <- "Young"
+names(A006.All) <- gsub("Gadph", "GAPDH", names(A006.All))
+names(A006.All) <- gsub("Slc17a6", "VGLUT2", names(A006.All))
+names(A006.All) <- gsub("Rpl6", "RPL6", names(A006.All))
+names(A006.Sum) <- gsub("Gadph", "GAPDH", names(A006.Sum))
+names(A006.Sum) <- gsub("Slc17a6", "VGLUT2", names(A006.Sum))
+names(A006.Sum) <- gsub("Rpl6", "RPL6", names(A006.Sum))
+
+setwd("/Young/5a")
+A007.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A007.All <- read.csv("5-4.afi_job99432-v_object_results 5-TH.csv", header = TRUE)
+A007.All$Animal <- "5"
+A007.All$AgeGroup <- "Young"
+A007.Sum$Animal <- "5"
+A007.Sum$AgeGroup <- "Young"
+names(A007.All) <- gsub("Gadph", "GAPDH", names(A007.All))
+names(A007.All) <- gsub("Th", "TH", names(A007.All))
+names(A007.All) <- gsub("Rpl6", "RPL6", names(A007.All))
+names(A007.Sum) <- gsub("Gadph", "GAPDH", names(A007.Sum))
+names(A007.Sum) <- gsub("Th", "TH", names(A007.Sum))
+names(A007.Sum) <- gsub("Rpl6", "RPL6", names(A007.Sum))
+
+setwd("/Young/5b")
+A008.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A008.All <- read.csv("5-VGLUT2.afi_job99442-v_object_results.csv", header = TRUE)
+A008.All$Animal <- "5"
+A008.All$AgeGroup <- "Young"
+A008.Sum$Animal <- "5"
+A008.Sum$AgeGroup <- "Young"
+names(A008.All) <- gsub("Gadph", "GAPDH", names(A008.All))
+names(A008.All) <- gsub("Slc17a6", "VGLUT2", names(A008.All))
+names(A008.All) <- gsub("Rpl6", "RPL6", names(A008.All))
+names(A008.Sum) <- gsub("Gadph", "GAPDH", names(A008.Sum))
+names(A008.Sum) <- gsub("Slc17a6", "VGLUT2", names(A008.Sum))
+names(A008.Sum) <- gsub("Rpl6", "RPL6", names(A008.Sum))
+
+setwd("/Young/1a")
+A009.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A009.All <- read.csv("YM1-1Fused.afi_job105982-TH_object_results.csv", header = TRUE)
+A009.All$Animal <- "1"
+A009.All$AgeGroup <- "Young"
+A009.Sum$Animal <- "1"
+A009.Sum$AgeGroup <- "Young"
+names(A009.All) <- gsub("Gadph", "GAPDH", names(A009.All))
+names(A009.All) <- gsub("Rpl6", "RPL6", names(A009.All))
+names(A009.All) <- gsub("Scl17a6", "VGLUT2", names(A009.All))
+names(A009.Sum) <- gsub("Gadph", "GAPDH", names(A009.Sum))
+names(A009.Sum) <- gsub("Rpl6", "RPL6", names(A009.Sum))
+names(A009.Sum) <- gsub("Scl17a6", "VGLUT2", names(A009.Sum))
+
+setwd("/Young/1b")
+A010.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A010.All <- read.csv("YM1-2Fused.2.afi_job105992-v_object_results.csv", header = TRUE)
+A010.All$Animal <- "1"
+A010.All$AgeGroup <- "Young"
+A010.Sum$Animal <- "1"
+A010.Sum$AgeGroup <- "Young"
+names(A010.All) <- gsub("Slc17a6", "VGLUT2", names(A010.All))
+names(A010.All) <- gsub("Rpl6", "RPL6", names(A010.All))
+names(A010.Sum) <- gsub("Slc17a6", "VGLUT2", names(A010.Sum))
+names(A010.Sum) <- gsub("Rpl6", "RPL6", names(A010.Sum))
+
+setwd("/Young/1c")
+A011.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A011.All <- read.csv("YM1-5Fused.1.afi_job106002-v.1_object_results.csv", header = TRUE)
+A011.All$Animal <- "1"
+A011.All$AgeGroup <- "Young"
+A011.Sum$Animal <- "1"
+A011.Sum$AgeGroup <- "Young"
+names(A011.All) <- gsub("Gapdh", "GAPDH", names(A011.All))
+names(A011.All) <- gsub("Rpl6", "RPL6", names(A011.All))
+names(A011.Sum) <- gsub("Gapdh", "GAPDH", names(A011.Sum))
+names(A011.Sum) <- gsub("Rpl6", "RPL6", names(A011.Sum))
+
+setwd("/Young/7a")
+A012.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A012.All <- read.csv("YM3-3Fused.1.afi_job106012-v.1_object_results.csv", header = TRUE)
+A012.All$Animal <- "7"
+A012.All$AgeGroup <- "Young"
+A012.Sum$Animal <- "7"
+A012.Sum$AgeGroup <- "Young"
+names(A012.All) <- gsub("Slc17a6", "VGLUT2", names(A012.All))
+names(A012.Sum) <- gsub("Slc17a6", "VGLUT2", names(A012.Sum))
+
+setwd("/Young/6a")
+A013.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A013.All <- read.csv("YM2-2Fused.afi_job106022-TH_object_results.csv", header = TRUE)
+A013.All$Animal <- "6"
+A013.All$AgeGroup <- "Young"
+A013.Sum$Animal <- "6"
+A013.Sum$AgeGroup <- "Young"
+names(A013.All) <- gsub("Gapdh", "GAPDH", names(A013.All))
+names(A013.All) <- gsub("Th", "TH", names(A013.All))
+names(A013.All) <- gsub("Rpl6", "RPL6", names(A013.All))
+names(A013.Sum) <- gsub("Gapdh", "GAPDH", names(A013.Sum))
+names(A013.Sum) <- gsub("Th", "TH", names(A013.Sum))
+names(A013.Sum) <- gsub("Rpl6", "RPL6", names(A013.Sum))
+
+setwd("/Young/8a")
+A014.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A014.All <- read.csv("YM4-2..afi_job106062-v.1_object_results.csv", header = TRUE)
+A014.All$Animal <- "8"
+A014.All$AgeGroup <- "Young"
+A014.Sum$Animal <- "8"
+A014.Sum$AgeGroup <- "Young"
+names(A014.All) <- gsub("Gapdh", "GAPDH", names(A014.All))
+names(A014.All) <- gsub("Rpl6", "RPL6", names(A014.All))
+names(A014.Sum) <- gsub("Gapdh", "GAPDH", names(A014.Sum))
+names(A014.Sum) <- gsub("Rpl6", "RPL6", names(A014.Sum))
+
+setwd("/Young/8b")
+A015.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A015.All <- read.csv("YM4-2.afi_job10607Indica Labs - FISH v3.0.4_object_results.csv", header = TRUE)
+A015.All$Animal <- "8"
+A015.All$AgeGroup <- "Young"
+A015.Sum$Animal <- "8"
+A015.Sum$AgeGroup <- "Young"
+names(A015.All) <- gsub("Slc17a6", "VGLUT2", names(A015.All))
+names(A015.All) <- gsub("Rpl6", "RPL6", names(A015.All))
+names(A015.Sum) <- gsub("Slc17a6", "VGLUT2", names(A015.Sum))
+names(A015.Sum) <- gsub("Rpl6", "RPL6", names(A015.Sum))
+
+setwd("/Middle/10a")
+A016.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A016.All <- read.csv("7-TH.afi_job99452-v_object_results.csv", header = TRUE)
+A016.All$Animal <- "10"
+A016.All$AgeGroup <- "Middle Aged"
+A016.Sum$Animal <- "10"
+A016.Sum$AgeGroup <- "Middle Aged"
+names(A016.All) <- gsub("Gadph", "GAPDH", names(A016.All))
+names(A016.All) <- gsub("Th", "TH", names(A016.All))
+names(A016.All) <- gsub("Rpl6", "RPL6", names(A016.All))
+names(A016.Sum) <- gsub("Gadph", "GAPDH", names(A016.Sum))
+names(A016.Sum) <- gsub("Th", "TH", names(A016.Sum))
+names(A016.Sum) <- gsub("Rpl6", "RPL6", names(A016.Sum))
+
+setwd("/Middle/10b")
+A017.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A017.All <- read.csv("7-VGLUT2.afi_job99462-v_object_results.csv", header = TRUE)
+A017.All$Animal <- "10"
+A017.All$AgeGroup <- "Middle Aged"
+A017.Sum$Animal <- "10"
+A017.Sum$AgeGroup <- "Middle Aged"
+names(A017.All) <- gsub("Gadph", "GAPDH", names(A017.All))
+names(A017.All) <- gsub("Slc17a6", "VGLUT2", names(A017.All))
+names(A017.All) <- gsub("Rpl6", "RPL6", names(A017.All))
+names(A017.Sum) <- gsub("Gadph", "GAPDH", names(A017.Sum))
+names(A017.Sum) <- gsub("Slc17a6", "VGLUT2", names(A017.Sum))
+names(A017.Sum) <- gsub("Rpl6", "RPL6", names(A017.Sum))
+
+setwd("/Middle/11a")
+A018.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A018.All <- read.csv("8-TH.afi_job99752-v.1_object_results.csv", header = TRUE)
+A018.All$Animal <- "11"
+A018.All$AgeGroup <- "Middle Aged"
+A018.Sum$Animal <- "11"
+A018.Sum$AgeGroup <- "Middle Aged"
+names(A018.All) <- gsub("Gadph", "GAPDH", names(A018.All))
+names(A018.All) <- gsub("Th", "TH", names(A018.All))
+names(A018.All) <- gsub("Rpl6", "RPL6", names(A018.All))
+names(A018.Sum) <- gsub("Gadph", "GAPDH", names(A018.Sum))
+names(A018.Sum) <- gsub("Th", "TH", names(A018.Sum))
+names(A018.Sum) <- gsub("Rpl6", "RPL6", names(A018.Sum))
+
+setwd("/Middle/11b")
+A019.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A019.All <- read.csv("8-VGLUT2.afi_job99762-TH_object_results.csv", header = TRUE)
+A019.All$Animal <- "11"
+A019.All$AgeGroup <- "Middle Aged"
+A019.Sum$Animal <- "11"
+A019.Sum$AgeGroup <- "Middle Aged"
+names(A019.All) <- gsub("Gadph", "GAPDH", names(A019.All))
+names(A019.All) <- gsub("Slc17a6", "VGLUT2", names(A019.All))
+names(A019.All) <- gsub("Rpl6", "RPL6", names(A019.All))
+names(A019.Sum) <- gsub("Gadph", "GAPDH", names(A019.Sum))
+names(A019.Sum) <- gsub("Slc17a6", "VGLUT2", names(A019.Sum))
+names(A019.Sum) <- gsub("Rpl6", "RPL6", names(A019.Sum))
+
+setwd("/Middle/12a")
+A020.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A020.All <- read.csv("9-TH.afi_job99772-v.1_object_results.csv", header = TRUE)
+A020.All$Animal <- "12"
+A020.All$AgeGroup <- "Middle Aged"
+A020.Sum$Animal <- "12"
+A020.Sum$AgeGroup <- "Middle Aged"
+names(A020.All) <- gsub("Gadph", "GAPDH", names(A020.All))
+names(A020.All) <- gsub("Th", "TH", names(A020.All))
+names(A020.All) <- gsub("Rpl6", "RPL6", names(A020.All))
+names(A020.Sum) <- gsub("Gadph", "GAPDH", names(A020.Sum))
+names(A020.Sum) <- gsub("Th", "TH", names(A020.Sum))
+names(A020.Sum) <- gsub("Rpl6", "RPL6", names(A020.Sum))
+
+setwd("/Middle/12b")
+A021.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A021.All <- read.csv("9-VGLUT2.afi_job99782-v.1_object_results.csv", header = TRUE)
+A021.All$Animal <- "12"
+A021.All$AgeGroup <- "Middle Aged"
+A021.Sum$Animal <- "12"
+A021.Sum$AgeGroup <- "Middle Aged"
+names(A021.All) <- gsub("Gadph", "GAPDH", names(A021.All))
+names(A021.All) <- gsub("Slc17a6", "VGLUT2", names(A021.All))
+names(A021.All) <- gsub("Rpl6", "RPL6", names(A021.All))
+names(A021.Sum) <- gsub("Gadph", "GAPDH", names(A021.Sum))
+names(A021.Sum) <- gsub("Slc17a6", "VGLUT2", names(A021.Sum))
+names(A021.Sum) <- gsub("Rpl6", "RPL6", names(A021.Sum))
+
+setwd("/Middle/13a")
+A022.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A022.All <- read.csv("10-TH.afi_job99912-v.1_object_results.csv", header = TRUE)
+A022.All$Animal <- "13"
+A022.All$AgeGroup <- "Middle Aged"
+A022.Sum$Animal <- "13"
+A022.Sum$AgeGroup <- "Middle Aged"
+names(A022.All) <- gsub("Gadph", "GAPDH", names(A022.All))
+names(A022.All) <- gsub("Th", "TH", names(A022.All))
+names(A022.All) <- gsub("Rpl6", "RPL6", names(A022.All))
+names(A022.Sum) <- gsub("Gadph", "GAPDH", names(A022.Sum))
+names(A022.Sum) <- gsub("Th", "TH", names(A022.Sum))
+names(A022.Sum) <- gsub("Rpl6", "RPL6", names(A022.Sum))
+
+setwd("/Middle/13b")
+A023.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A023.All <- read.csv("10-VGLUT2.afi_job99922-v.1_object_results.csv", header = TRUE)
+A023.All$Animal <- "13"
+A023.All$AgeGroup <- "Middle Aged"
+A023.Sum$Animal <- "13"
+A023.Sum$AgeGroup <- "Middle Aged"
+names(A023.All) <- gsub("Gadph", "GAPDH", names(A023.All))
+names(A023.All) <- gsub("Slc17a6", "VGLUT2", names(A023.All))
+names(A023.All) <- gsub("Rpl6", "RPL6", names(A023.All))
+names(A023.Sum) <- gsub("Gadph", "GAPDH", names(A023.Sum))
+names(A023.Sum) <- gsub("Slc17a6", "VGLUT2", names(A023.Sum))
+names(A023.Sum) <- gsub("Rpl6", "RPL6", names(A023.Sum))
+
+setwd("/Middle/14a")
+A024.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A024.All <- read.csv("New 11mth#1-BFused.afi_job103922-TH_object_results.csv", header = TRUE)
+A024.All$Animal <- "14"
+A024.All$AgeGroup <- "Middle Aged"
+A024.Sum$Animal <- "14"
+A024.Sum$AgeGroup <- "Middle Aged"
+names(A024.All) <- gsub("Rpl6", "RPL6", names(A024.All))
+names(A024.All) <- gsub("Slc17a6", "VGLUT2", names(A024.All))
+names(A024.Sum) <- gsub("Rpl6", "RPL6", names(A024.Sum))
+names(A024.Sum) <- gsub("Slc17a6", "VGLUT2", names(A024.Sum))
+
+setwd("/Young/9a")
+A025.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A025.All <- read.csv("YM3-5.afi_job105972-TH_object_results.csv", header = TRUE)
+A025.All$Animal <- "9"
+A025.All$AgeGroup <- "Young"
+A025.Sum$Animal <- "9"
+A025.Sum$AgeGroup <- "Young"
+names(A025.All) <- gsub("Slc17a6", "VGLUT2", names(A025.All))
+names(A025.Sum) <- gsub("Slc17a6", "VGLUT2", names(A025.Sum))
+
+
+setwd("/Middle/15a")
+A026.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A026.All <- read.csv("6.afi_job106032-v.1_object_results.csv", header = TRUE)
+A026.All$Animal <- "15"
+A026.All$AgeGroup <- "Middle Aged"
+A026.Sum$Animal <- "15"
+A026.Sum$AgeGroup <- "Middle Aged"
+names(A026.All) <- gsub("Gapdh", "GAPDH", names(A026.All))
+names(A026.All) <- gsub("Rpl6", "RPL6", names(A026.All))
+names(A026.Sum) <- gsub("Gapdh", "GAPDH", names(A026.Sum))
+names(A026.Sum) <- gsub("Rpl6", "RPL6", names(A026.Sum))
+
+setwd("/Aged/16a")
+A027.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A027.All <- read.csv("13-TH.afi_job99932-v_object_results.csv", header = TRUE)
+A027.All$Animal <- "16"
+A027.All$AgeGroup <- "Aged"
+A027.Sum$Animal <- "16"
+A027.Sum$AgeGroup <- "Aged"
+names(A027.All) <- gsub("Gadph", "GAPDH", names(A027.All))
+names(A027.All) <- gsub("Th", "TH", names(A027.All))
+names(A027.All) <- gsub("Rpl6", "RPL6", names(A027.All))
+names(A027.Sum) <- gsub("Gadph", "GAPDH", names(A027.Sum))
+names(A027.Sum) <- gsub("Th", "TH", names(A027.Sum))
+names(A027.Sum) <- gsub("Rpl6", "RPL6", names(A027.Sum))
+
+setwd("/Aged/16b")
+A028.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A028.All <- read.csv("13-VGLUT2.afi_job99942-v_object_results.csv", header = TRUE)
+A028.All$Animal <- "16"
+A028.All$AgeGroup <- "Aged"
+A028.Sum$Animal <- "16"
+A028.Sum$AgeGroup <- "Aged"
+names(A028.All) <- gsub("Gadph", "GAPDH", names(A028.All))
+names(A028.All) <- gsub("Slc17a6", "VGLUT2", names(A028.All))
+names(A028.All) <- gsub("Rpl6", "RPL6", names(A028.All))
+names(A028.Sum) <- gsub("Gadph", "GAPDH", names(A028.Sum))
+names(A028.Sum) <- gsub("Slc17a6", "VGLUT2", names(A028.Sum))
+names(A028.Sum) <- gsub("Rpl6", "RPL6", names(A028.Sum))
+
+setwd("/Aged/17a")
+A029.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A029.All <- read.csv("14-TH.afi_job9995Indica Labs - FISH v3.0.4_object_results.csv", header = TRUE)
+A029.All$Animal <- "17"
+A029.All$AgeGroup <- "Aged"
+A029.Sum$Animal <- "17"
+A029.Sum$AgeGroup <- "Aged"
+names(A029.All) <- gsub("Gadph", "GAPDH", names(A029.All))
+names(A029.All) <- gsub("Th", "TH", names(A029.All))
+names(A029.All) <- gsub("Rpl6", "RPL6", names(A029.All))
+names(A029.Sum) <- gsub("Gadph", "GAPDH", names(A029.Sum))
+names(A029.Sum) <- gsub("Th", "TH", names(A029.Sum))
+names(A029.Sum) <- gsub("Rpl6", "RPL6", names(A029.Sum))
+
+setwd("/Aged/17b")
+A030.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A030.All <- read.csv("14-VGLUT2.afi_job99962-v.1_object_results.csv", header = TRUE)
+A030.All$Animal <- "17"
+A030.All$AgeGroup <- "Aged"
+A030.Sum$Animal <- "17"
+A030.Sum$AgeGroup <- "Aged"
+names(A030.All) <- gsub("Gadph", "GAPDH", names(A030.All))
+names(A030.All) <- gsub("Slc17a6", "VGLUT2", names(A030.All))
+names(A030.All) <- gsub("Rpl6", "RPL6", names(A030.All))
+names(A030.Sum) <- gsub("Gadph", "GAPDH", names(A030.Sum))
+names(A030.Sum) <- gsub("Slc17a6", "VGLUT2", names(A030.Sum))
+names(A030.Sum) <- gsub("Rpl6", "RPL6", names(A030.Sum))
+
+setwd("/Aged/18a")
+A031.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A031.All <- read.csv("Aged 1-AFused.afi_job103932-TH_object_results.csv", header = TRUE)
+A031.All$Animal <- "18"
+A031.All$AgeGroup <- "Aged"
+A031.Sum$Animal <- "18"
+A031.Sum$AgeGroup <- "Aged"
+names(A031.All) <- gsub("Slc17a6", "VGLUT2", names(A031.All))
+names(A031.All) <- gsub("Rpl6", "RPL6", names(A031.All))
+names(A031.Sum) <- gsub("Slc17a6", "VGLUT2", names(A031.Sum))
+names(A031.Sum) <- gsub("Rpl6", "RPL6", names(A031.Sum))
+
+setwd("/Aged/18b")
+A032.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A032.All <- read.csv("Aged 1-BFused.afi_job103952-TH_object_results.csv", header = TRUE)
+A032.All$Animal <- "18"
+A032.All$AgeGroup <- "Aged"
+A032.Sum$Animal <- "18"
+A032.Sum$AgeGroup <- "Aged"
+names(A032.All) <- gsub("Slc17a6", "VGLUT2", names(A032.All))
+names(A032.All) <- gsub("Rpl6", "RPL6", names(A032.All))
+names(A032.Sum) <- gsub("Slc17a6", "VGLUT2", names(A032.Sum))
+names(A032.Sum) <- gsub("Rpl6", "RPL6", names(A032.Sum))
+
+setwd("/Aged/19a")
+A033.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A033.All <- read.csv("Aged 2-D Bottom Fused.afi_job103962-TH_object_results.csv", header = TRUE)
+A033.All$Animal <- "19"
+A033.All$AgeGroup <- "Aged"
+A033.Sum$Animal <- "19"
+A033.Sum$AgeGroup <- "Aged"
+names(A033.All) <- gsub("Gapdh", "GAPDH", names(A033.All))
+names(A033.All) <- gsub("Rpl6", "RPL6", names(A033.All))
+names(A033.Sum) <- gsub("Gapdh", "GAPDH", names(A033.Sum))
+names(A033.Sum) <- gsub("Rpl6", "RPL6", names(A033.Sum))
+
+setwd("/Aged/20a")
+A034.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A034.All <- read.csv("11.afi_job106042-v.1_object_results.csv", header = TRUE)
+A034.All$Animal <- "20"
+A034.All$AgeGroup <- "Aged"
+A034.Sum$Animal <- "20"
+A034.Sum$AgeGroup <- "Aged"
+names(A034.All) <- gsub("Gapdh", "GAPDH", names(A034.All))
+names(A034.All) <- gsub("Rpl6", "RPL6", names(A034.All))
+names(A034.Sum) <- gsub("Gapdh", "GAPDH", names(A034.Sum))
+names(A034.Sum) <- gsub("Rpl6", "RPL6", names(A034.Sum))
+
+setwd("/Aged/21a")
+A035.Sum <- read.csv("Total_Summary_Results.csv", header = TRUE)
+A035.All <- read.csv("11.afi_job106052-v.1_object_results.csv", header = TRUE)
+A035.All$Animal <- "21"
+A035.All$AgeGroup <- "Aged"
+A035.Sum$Animal <- "21"
+A035.Sum$AgeGroup <- "Aged"
+names(A035.All) <- gsub("Slc17a6", "VGLUT2", names(A035.All))
+names(A035.All) <- gsub("Rpl6", "RPL6", names(A035.All))
+names(A035.Sum) <- gsub("Slc17a6", "VGLUT2", names(A035.Sum))
+names(A035.Sum) <- gsub("Rpl6", "RPL6", names(A035.Sum))
+
+All.09.05 <- full_join(A001.All, A002.All)
+All.09.05 <- full_join(All.09.05, A003.All)
+All.09.05 <- full_join(All.09.05, A004.All)
+All.09.05 <- full_join(All.09.05, A005.All)
+All.09.05 <- full_join(All.09.05, A006.All)
+All.09.05 <- full_join(All.09.05, A007.All)
+All.09.05 <- full_join(All.09.05, A008.All)
+All.09.05 <- full_join(All.09.05, A009.All)
+All.09.05 <- full_join(All.09.05, A010.All)
+All.09.05 <- full_join(All.09.05, A011.All)
+All.09.05 <- full_join(All.09.05, A012.All)
+All.09.05 <- full_join(All.09.05, A013.All)
+All.09.05 <- full_join(All.09.05, A014.All)
+All.09.05 <- full_join(All.09.05, A015.All)
+All.09.05 <- full_join(All.09.05, A016.All)
+All.09.05 <- full_join(All.09.05, A017.All)
+All.09.05 <- full_join(All.09.05, A018.All)
+All.09.05 <- full_join(All.09.05, A019.All)
+All.09.05 <- full_join(All.09.05, A020.All)
+All.09.05 <- full_join(All.09.05, A021.All)
+All.09.05 <- full_join(All.09.05, A022.All)
+All.09.05 <- full_join(All.09.05, A023.All)
+All.09.05 <- full_join(All.09.05, A024.All)
+All.09.05 <- full_join(All.09.05, A025.All)
+All.09.05 <- full_join(All.09.05, A026.All)
+All.09.05 <- full_join(All.09.05, A027.All)
+All.09.05 <- full_join(All.09.05, A028.All)
+All.09.05 <- full_join(All.09.05, A029.All)
+All.09.05 <- full_join(All.09.05, A030.All)
+All.09.05 <- full_join(All.09.05, A031.All)
+All.09.05 <- full_join(All.09.05, A032.All)
+All.09.05 <- full_join(All.09.05, A033.All)
+All.09.05 <- full_join(All.09.05, A034.All)
+All.09.05 <- full_join(All.09.05, A035.All)
+
+Sum.09.05 <- full_join(A001.Sum, A002.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A003.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A004.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A005.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A006.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A007.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A008.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A009.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A010.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A011.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A012.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A013.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A014.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A015.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A016.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A017.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A018.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A019.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A020.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A021.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A022.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A023.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A024.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A025.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A026.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A027.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A028.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A029.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A030.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A031.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A032.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A033.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A034.Sum)
+Sum.09.05 <- full_join(Sum.09.05, A035.Sum)
+```
+
+```{r Export Initial Merged File, eval=FALSE}
+setwd("")
+write.csv(All.09.05, "All,Merged.csv")
+write.csv(Sum.09.05, "Sums,Merged.csv")
+```
+
+```{r Importing Initial Data and Loading Libraries}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+setwd("")
+All.09.05 <- read.csv("All,Merged.csv")
+Sum.09.05 <- read.csv("Sums,Merged.csv")
+```
+
+```{r Initial GAPDH Individual and Merged Data Analyses, echo=TRUE}
+#From Summary, Copies per Total Area Analyzed
+P1.per.Area <- Sum.09.05$Total.GAPDH.Copies/(Sum.09.05$Area.Analyzed..μm..)*Sum.09.05$Avg.Cell.Area..μm..
+
+#Mean of Copies per Area Analyzed *Avg Cell Area
+Mean.P1.per.Area <- mean(P1.per.Area, na.rm = TRUE)
+
+#Define Threshold
+Threshold.P1 <- 11
+
+Threshold.P1.Calc <- 3*Mean.P1.per.Area
+Threshold.P1.Calc.RD <- floor(Threshold.P1.Calc)
+```
+
+```{r Identify Total Positive Cells for GAPDH (Initial Data), echo=TRUE}
+#P1 Thresholds
+P1.pos.Cells  <- All.09.05 %>% filter(GAPDH.Copies >= Threshold.P1)
+```
+
+```{r GAPDH Treshold Comparisons for initial data, echo=TRUE}
+library(ggpubr)
+P1.Raw <- ggarrange(All.09.05 %>% ggplot() + geom_jitter(shape=1, aes(x=1:nrow(All.09.05), y=GAPDH.Copies, color=AgeGroup)) + labs(x= "Age Group", y="Copy #") + ggtitle("GAPDH") + geom_hline(yintercept=Threshold.P1) + theme(legend.position = "none") + rremove("x.text") + rremove("xlab") + theme(plot.title = element_text(size=9)) + font("ylab", size = 7),
+ncol = 1, nrow = 1, common.legend = TRUE, legend="bottom")
+
+P1.Raw
+```
+
+```{r GAPDH Weighted Densities for initial data, echo=TRUE}
+#GAPDH Positives per Animal
+P1.Positives.per.Animal <- All.09.05 %>% group_by(Animal) %>% filter(GAPDH.Copies >= Threshold.P1) %>% summarise(count=n()) %>% rename("GAPDH.pos.Cells" = "count")
+
+#GAPDH total areas  per animal
+P1.Total.Areas.per.Animal <- Sum.09.05 %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+
+#GAPDH Density Calculations
+P1.Density.Calcs <- left_join(P1.Positives.per.Animal, P1.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.GAPDH.pos = GAPDH.pos.Cells/(Total.Area*20)*1000^3)
+
+#View Weighted GAPDH Densities
+print(P1.Density.Calcs)
+
+#Mean of GAPDH weighted densities
+Weighted.P1.Density <- mean(P1.Density.Calcs$Density.GAPDH.pos, na.rm = TRUE)
+```
+
+```{r GAPDH Data and Thresholds Comparison Tables - Positive Cell Densities for initial data, eval=TRUE, echo=TRUE}
+GAPDH.Dens.Cells <- as.data.frame(matrix(ncol = 5, nrow = 17))
+GAPDH.Dens.Cells <- GAPDH.Dens.Cells %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+GAPDH.Dens.Cells$Animal <- P1.Density.Calcs$Animal
+GAPDH.Dens.Cells$AgeGroup <- P1.Density.Calcs$AgeGroup
+GAPDH.Dens.Cells$Total.Area <- P1.Density.Calcs$Total.Area
+GAPDH.Dens.Cells$Pos <- P1.Density.Calcs$P1.Positives.per.Animal
+GAPDH.Dens.Cells$Density <- P1.Density.Calcs$Density.GAPDH.pos
+
+print(GAPDH.Dens.Cells)
+```
+
+```{r GAPDH Density graph for initial data, echo=TRUE}
+GAPDH.Dens <- ggplot(GAPDH.Dens.Cells, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("GAPDH") + xlab("AgeGroup")
+ggarrange(GAPDH.Dens)
+```
+
+```{r TH Individual and Merged Data Analyses for initial data, echo=TRUE}
+#From Summary, Copies per Total Area Analyzed
+P2.per.Area <- Sum.09.05$Total.TH.Copies/(Sum.09.05$Area.Analyzed..μm..)*Sum.09.05$Avg.Cell.Area..μm..
+
+#Mean of Copies per Area Analyzed *Avg Cell Area
+Mean.P2.per.Area <- mean(P2.per.Area, na.rm = TRUE)
+
+#Define Threshold
+Threshold.P2 <- 4
+
+Threshold.P2.Calc <- 3*Mean.P2.per.Area
+Threshold.P2.Calc.RD <- floor(Threshold.P2.Calc)
+```
+
+```{r Identify Total Positive Cells for TH (Raw Data) for initial data, echo=TRUE}
+#P2 Thresholds
+P2.pos.Cells  <- All.09.05 %>% filter(TH.Copies >= Threshold.P2)
+```
+
+```{r TH Treshold Comparisons for initial data, echo=TRUE}
+P2.Raw <- ggarrange(All.09.05 %>% ggplot() + geom_jitter(shape=1, aes(x=1:nrow(All.09.05), y=TH.Copies, color=AgeGroup)) + labs(x= "Age Group", y="Copy #") + ggtitle("TH") + geom_hline(yintercept=Threshold.P2) + theme(legend.position = "none") + rremove("x.text") + rremove("xlab") + theme(plot.title = element_text(size=9)) + font("ylab", size = 7),
+
+  ncol = 1, nrow = 1, common.legend = TRUE, legend="bottom")
+
+P2.Raw
+```
+
+```{r TH Weighted Densities for initial data, echo=TRUE}
+#TH Positives per Animal
+P2.Positives.per.Animal <- All.09.05 %>% group_by(Animal) %>% filter(TH.Copies >= Threshold.P2) %>% summarise(count=n()) %>% rename("TH.pos.Cells" = "count")
+
+#TH total areas  per animal
+P2.Total.Areas.per.Animal <- Sum.09.05 %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+
+#TH Density Calculations
+P2.Density.Calcs <- left_join(P2.Positives.per.Animal, P2.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.TH.pos = TH.pos.Cells/(Total.Area*20)*1000^3)
+
+#View Weighted TH Densities
+print(P2.Density.Calcs)
+
+#Mean of TH weighted densities
+Weighted.P2.Density <- mean(P2.Density.Calcs$Density.TH.pos, na.rm = TRUE)
+```
+
+```{r TH Data and Thresholds Comparison Tables - Positive Cell Densities for initial data, eval=TRUE, echo=TRUE}
+TH.Dens.Cells <- as.data.frame(matrix(ncol = 5, nrow = 21))
+TH.Dens.Cells <- TH.Dens.Cells %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+TH.Dens.Cells$Animal <- P2.Density.Calcs$Animal
+TH.Dens.Cells$AgeGroup <- P2.Density.Calcs$AgeGroup
+TH.Dens.Cells$Total.Area <- P2.Density.Calcs$Total.Area
+TH.Dens.Cells$Pos <- P2.Density.Calcs$P2.Positives.per.Animal
+TH.Dens.Cells$Density <- P2.Density.Calcs$Density.TH.pos
+
+print(TH.Dens.Cells)
+```
+
+```{r TH Density graphs for initial data}
+TH.Dens <- ggplot(TH.Dens.Cells, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("TH") + xlab("AgeGroup")
+ggarrange(TH.Dens)
+```
+
+
+```{r VGLUT2 Individual and Merged Data Analyses for initial data, echo=TRUE}
+#From Summary, Copies per Total Area Analyzed
+P3.per.Area <- Sum.09.05$Total.VGLUT2.Copies/(Sum.09.05$Area.Analyzed..μm..)*Sum.09.05$Avg.Cell.Area..μm..
+
+#Mean of Copies per Area Analyzed *Avg Cell Area
+Mean.P3.per.Area <- mean(P3.per.Area, na.rm = TRUE)
+
+#Define Threshold
+Threshold.P3 <- 1
+
+Threshold.P3.Calc <- 3*Mean.P3.per.Area
+Threshold.P3.Calc.RD <- floor(Threshold.P3.Calc)
+```
+
+```{r Identify Total Positive Cells for VGLUT2 (Raw Data) for initial data, echo=TRUE}
+#P3 Thresholds
+P3.pos.Cells  <- All.09.05 %>% filter(VGLUT2.Copies >= Threshold.P3)
+```
+
+```{r VGLUT2 Treshold Comparisons for initial data, echo=TRUE}
+P3.Raw  <- ggarrange(All.09.05 %>% ggplot() + geom_jitter(shape=1, aes(x=1:nrow(All.09.05), y=VGLUT2.Copies, color=AgeGroup)) + labs(x= "Age Group", y="Copy #") + ggtitle("VGLUT2") + geom_hline(yintercept=Threshold.P3) + theme(legend.position = "none") + rremove("x.text") + rremove("xlab") + theme(plot.title = element_text(size=9)) + font("ylab", size = 7),
+
+  ncol = 1, nrow = 1, common.legend = TRUE, legend="bottom")
+
+P3.Raw 
+```
+
+```{r VGLUT2 Weighted Densities for initial data, echo=TRUE}
+#VGLUT2 Positives per Animal
+P3.Positives.per.Animal <- All.09.05 %>% group_by(Animal) %>% filter(VGLUT2.Copies >= Threshold.P3) %>% summarise(count=n()) %>% rename("VGLUT2.pos.Cells" = "count")
+
+#VGLUT2 total areas  per animal
+P3.Total.Areas.per.Animal <- Sum.09.05 %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+
+#VGLUT2 Density Calculations
+P3.Density.Calcs <- left_join(P3.Positives.per.Animal, P3.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.VGLUT2.pos = VGLUT2.pos.Cells/(Total.Area*20)*1000^3)
+
+#View Weighted VGLUT2 Densities
+print(P3.Density.Calcs)
+
+#Mean of VGLUT2 weighted densities
+Weighted.P3.Density <- mean(P3.Density.Calcs$Density.VGLUT2.pos, na.rm = TRUE)
+```
+
+```{r VGLUT2 Data and Thresholds Comparison Tables - Positive Cell Densities for initial data, eval=TRUE, echo=TRUE}
+VGLUT2.Dens.Cells <- as.data.frame(matrix(ncol = 5, nrow = 17))
+VGLUT2.Dens.Cells <- VGLUT2.Dens.Cells %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+VGLUT2.Dens.Cells$Animal <- P3.Density.Calcs$Animal
+VGLUT2.Dens.Cells$AgeGroup <- P3.Density.Calcs$AgeGroup
+VGLUT2.Dens.Cells$Total.Area <- P3.Density.Calcs$Total.Area
+VGLUT2.Dens.Cells$Pos <- P3.Density.Calcs$P3.Positives.per.Animal
+VGLUT2.Dens.Cells$Density <- P3.Density.Calcs$Density.VGLUT2.pos
+
+print(VGLUT2.Dens.Cells)
+```
+
+
+```{r VGLUT2 Density graphs for initial data}
+VGLUT2.Dens <- ggplot(VGLUT2.Dens.Cells, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("VGLUT2") + xlab("AgeGroup")
+ggarrange(VGLUT2.Dens)
+```
+
+```{r RPL6 Individual and Merged Data Analyses for initial data, echo=TRUE}
+#From Summary, Copies per Total Area Analyzed
+P4.per.Area <- Sum.09.05$Total.RPL6.Copies/(Sum.09.05$Area.Analyzed..μm..)*Sum.09.05$Avg.Cell.Area..μm..
+
+#Mean of Copies per Area Analyzed *Avg Cell Area
+Mean.P4.per.Area <- mean(P4.per.Area, na.rm = TRUE)
+
+#Define Threshold
+Threshold.P4 <- 13
+
+Threshold.P4.Calc <- 3*Mean.P4.per.Area
+Threshold.P4.Calc.RD <- floor(Threshold.P4.Calc)
+```
+
+```{r Identify Total Positive Cells for RPL6 (Raw Data) for initial data, echo=TRUE}
+#P4 Thresholds
+P4.pos.Cells  <- All.09.05 %>% filter(RPL6.Copies >= Threshold.P4)
+```
+
+```{r RPL6 Treshold Comparisons for initial data, echo=TRUE}
+P4.Raw <- ggarrange(All.09.05 %>% ggplot() + geom_jitter(shape=1, aes(x=1:nrow(All.09.05), y=RPL6.Copies, color=AgeGroup)) + labs(x= "Age Group", y="Copy #") + ggtitle("RPL6") + geom_hline(yintercept=Threshold.P4) + theme(legend.position = "none") + rremove("x.text") + rremove("xlab") + theme(plot.title = element_text(size=9)) + font("ylab", size = 7),
+
+  ncol = 1, nrow = 1, common.legend = TRUE, legend="bottom")
+P4.Raw 
+```
+
+```{r RPL6 Weighted Densities for initial data, echo=TRUE}
+#RPL6 Positives per Animal
+P4.Positives.per.Animal <- All.09.05 %>% group_by(Animal) %>% filter(RPL6.Copies >= Threshold.P4) %>% summarise(count=n()) %>% rename("RPL6.pos.Cells" = "count")
+
+#RPL6 total areas  per animal
+P4.Total.Areas.per.Animal <- Sum.09.05 %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+
+#RPL6 Density Calculations
+P4.Density.Calcs <- left_join(P4.Positives.per.Animal, P4.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.RPL6.pos = RPL6.pos.Cells/(Total.Area*20)*1000^3)
+
+#View Weighted RPL6 Densities
+print(P4.Density.Calcs)
+
+#Mean of RPL6 weighted densities
+Weighted.P4.Density <- mean(P4.Density.Calcs$Density.RPL6.pos, na.rm = TRUE)
+```
+
+```{r RPL6 Data and Thresholds Comparison Tables - Positive Cell Densities for initial data, eval=TRUE, echo=TRUE}
+RPL6.Dens.Cells <- as.data.frame(matrix(ncol = 5, nrow = 20))
+RPL6.Dens.Cells <- RPL6.Dens.Cells %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+RPL6.Dens.Cells$Animal <- P4.Density.Calcs$Animal
+RPL6.Dens.Cells$AgeGroup <- P4.Density.Calcs$AgeGroup
+RPL6.Dens.Cells$Total.Area <- P4.Density.Calcs$Total.Area
+RPL6.Dens.Cells$Pos <- P4.Density.Calcs$P4.Positives.per.Animal
+RPL6.Dens.Cells$Density <- P4.Density.Calcs$Density.RPL6.pos
+
+print(RPL6.Dens.Cells)
+```
+
+```{r RPL6 Density graphs for initial data}
+RPL6.Dens <- ggplot(RPL6.Dens.Cells, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("RPL6") + xlab("AgeGroup")
+ggarrange(RPL6.Dens)
+```
+
+```{r Merged Graphs for initial data}
+All.Graphs.pos <- ggarrange(
+P1.Raw, P2.Raw, P3.Raw, P4.Raw,
+
+  ncol = 2, nrow = 2, common.legend = TRUE, legend="bottom")
+
+annotate_figure(All.Graphs.pos, top = text_grob("All Copies by Probe", color = "black", face = "bold", size = 14))
+
+
+Avg.Densities.by.AG <- ggarrange(
+GAPDH.Dens, TH.Dens, VGLUT2.Dens, RPL6.Dens,
+
+  ncol = 2, nrow = 2, common.legend = TRUE, legend="none")
+
+annotate_figure(Avg.Densities.by.AG, top = text_grob("Probe Average by Age Group", color = "black", face = "bold", size = 14))
+```
+
+```{r TH Only, TH and VGLUT, and VGLUT Only Dataframe Generation for initial data}
+library(tidyverse)
+library(dplyr)
+TH.Only <- subset(All.09.05 %>% filter(TH.Copies >= Threshold.P2 & VGLUT2.Copies < Threshold.P3))
+TH.VGLUT <- subset(All.09.05 %>% filter(TH.Copies >= Threshold.P2 & VGLUT2.Copies >= Threshold.P3))
+VGLUT.Only <- subset(All.09.05 %>% filter(VGLUT2.Copies >= Threshold.P3 & TH.Copies < Threshold.P2))
+```
+
+```{r TH+ Only Densities for initial data}
+library(tidyverse)
+library(ggplot2)
+
+#TH Positives per Animal
+TH.Only.Positives.per.Animal <- TH.Only %>% group_by(Animal) %>% filter(TH.Copies >= Threshold.P2) %>% summarise(count=n()) %>% rename("TH.Only.pos.Cells" = "count")
+
+#TH+ total areas  per animal
+TH.Only.Total.Areas.per.Animal <- Sum.09.05 %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+
+#TH+ Density Calculations
+TH.Only.Density.Calcs <- left_join(TH.Only.Positives.per.Animal, TH.Only.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.TH.Only.pos = TH.Only.pos.Cells/(Total.Area*20)*1000^3)
+
+#View Weighted TH+ Densities
+print(TH.Only.Density.Calcs)
+
+#Mean of TH+ Only weighted densities
+Weighted.TH.Only.Density <- mean(TH.Only.Density.Calcs$Density.TH.Only.pos, na.rm = TRUE)
+```
+
+```{r TH.Only Data and Thresholds Comparison Tables - Positive Cell Densities for initial data, eval=TRUE, echo=TRUE}
+TH.Only.Dens.Cells <- as.data.frame(matrix(ncol = 5, nrow = 7))
+TH.Only.Dens.Cells <- TH.Only.Dens.Cells %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+TH.Only.Dens.Cells$Animal <- TH.Only.Density.Calcs$Animal
+TH.Only.Dens.Cells$AgeGroup <- TH.Only.Density.Calcs$AgeGroup
+TH.Only.Dens.Cells$Total.Area <- TH.Only.Density.Calcs$Total.Area
+TH.Only.Dens.Cells$Pos <- TH.Only.Density.Calcs$TH.Only.Positives.per.Animal
+TH.Only.Dens.Cells$Density <- TH.Only.Density.Calcs$Density.TH.Only.pos
+
+print(TH.Only.Dens.Cells)
+```
+
+```{r TH Only Density graph for initial data, echo=TRUE}
+TH.Only.Dens <- ggplot(TH.Only.Dens.Cells, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("TH Only") + xlab("AgeGroup")
+ggarrange(TH.Only.Dens)
+```
+
+```{r TH+ Only RPL6 Density for initial data}
+library(tidyverse)
+library(ggplot2)
+
+#TH Positives per Animal
+TH.Only.RPL6.Positives.per.Animal <- TH.Only %>% group_by(Animal) %>% filter(RPL6.Copies >= Threshold.P4) %>% summarise(count=n()) %>% rename("TH.Only.RPL6.pos.Cells" = "count")
+
+#TH+ Density Calculations
+TH.Only.RPL6.Density.Calcs <- left_join(TH.Only.RPL6.Positives.per.Animal, TH.Only.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.TH.Only.RPL6.pos = TH.Only.RPL6.pos.Cells/(Total.Area*20)*1000^3)
+
+#View Weighted TH+ RPL6 Densities
+print(TH.Only.RPL6.Density.Calcs)
+
+#Mean of TH+ RPL6+ weighted densities
+Weighted.TH.Only.RPL6.Density <- mean(TH.Only.RPL6.Density.Calcs$Density.TH.Only.RPL6.pos, na.rm = TRUE)
+```
+
+```{r TH+ & VGLUT2+ Densities for initial data}
+library(tidyverse)
+library(ggplot2)
+
+#TH&VGLUT2 Positives per Animal
+TH.VGLUT2.Positives.per.Animal <- TH.VGLUT %>% group_by(Animal) %>% filter(TH.Copies >= Threshold.P2) %>% summarise(count=n()) %>% rename("TH.VGLUT2.pos.Cells" = "count")
+
+#TH&VGLUT2 total areas  per animal
+TH.VGLUT2.Total.Areas.per.Animal <- Sum.09.05 %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+
+#TH&VGLUT2 Density Calculations
+TH.VGLUT2.Density.Calcs <- left_join(TH.VGLUT2.Positives.per.Animal, TH.VGLUT2.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.TH.VGLUT2.pos = TH.VGLUT2.pos.Cells/(Total.Area*20)*1000^3)
+
+#View Weighted TH&VGLUT2 Densities
+print(TH.VGLUT2.Density.Calcs)
+
+#Mean of TH&VGLUT2 weighted densities
+Weighted.TH.VGLUT2.Density <- mean(TH.VGLUT2.Density.Calcs$Density.TH.VGLUT2.pos, na.rm = TRUE)
+```
+
+```{r TH&VGLUT2 Data and Thresholds Comparison Tables - Positive Cell Densities for initial data, eval=TRUE, echo=TRUE}
+TH.VGLUT2.Dens.Cells <- as.data.frame(matrix(ncol = 5, nrow = 7))
+TH.VGLUT2.Dens.Cells <- TH.VGLUT2.Dens.Cells %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+TH.VGLUT2.Dens.Cells$Animal <- TH.VGLUT2.Density.Calcs$Animal
+TH.VGLUT2.Dens.Cells$AgeGroup <- TH.VGLUT2.Density.Calcs$AgeGroup
+TH.VGLUT2.Dens.Cells$Total.Area <- TH.VGLUT2.Density.Calcs$Total.Area
+TH.VGLUT2.Dens.Cells$Pos <- TH.VGLUT2.Density.Calcs$TH.VGLUT2.Positives.per.Animal
+TH.VGLUT2.Dens.Cells$Density <- TH.VGLUT2.Density.Calcs$Density.TH.VGLUT2.pos
+
+print(TH.VGLUT2.Dens.Cells)
+```
+
+```{r TH & VGLUT2 Density graph for initial data, echo=TRUE}
+TH.VGLUT2.Dens <- ggplot(TH.VGLUT2.Dens.Cells, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("TH & VGLUT2") + xlab("AgeGroup")
+ggarrange(TH.VGLUT2.Dens)
+```
+
+```{r TH+ & VGLUT2+ RPL6 Density for initial data}
+library(tidyverse)
+library(ggplot2)
+
+#TH Positives per Animal
+TH.VGLUT.RPL6.Positives.per.Animal <- TH.VGLUT %>% group_by(Animal) %>% filter(RPL6.Copies >= Threshold.P4) %>% summarise(count=n()) %>% rename("TH.VGLUT.RPL6.pos.Cells" = "count")
+
+#TH+ Density Calculations
+TH.VGLUT.RPL6.Density.Calcs <- left_join(TH.VGLUT.RPL6.Positives.per.Animal, TH.VGLUT2.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.TH.VGLUT.RPL6.pos = TH.VGLUT.RPL6.pos.Cells/(Total.Area*20)*1000^3)
+
+#View Weighted TH+, VGLUT2+, RPL6+ Densities
+print(TH.VGLUT.RPL6.Density.Calcs)
+
+#Mean of TH+, VGLUT2+, RPL6+  weighted densities
+Weighted.TH.VGLUT.RPL6.Density <- mean(TH.VGLUT.RPL6.Density.Calcs$Density.TH.VGLUT.RPL6.pos, na.rm = TRUE)
+```
+
+```{r VGLUT2+ Densities for initial data}
+library(tidyverse)
+library(ggplot2)
+
+#VGLUT2 Positives per Animal
+VGLUT2.Only.Positives.per.Animal <- VGLUT.Only %>% group_by(Animal) %>% filter(VGLUT2.Copies >= Threshold.P3) %>% summarise(count=n()) %>% rename("VGLUT2.Only.pos.Cells" = "count")
+
+#VGLUT2 total areas  per animal
+VGLUT2.Only.Total.Areas.per.Animal <- Sum.09.05 %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+
+#VGLUT2 Density Calculations
+VGLUT2.Only.Density.Calcs <- left_join(VGLUT2.Only.Positives.per.Animal, VGLUT2.Only.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.VGLUT2.Only.pos = VGLUT2.Only.pos.Cells/(Total.Area*20)*1000^3)
+
+#View Weighted VGLUT2 Densities
+print(VGLUT2.Only.Density.Calcs)
+
+#Mean of VGLUT2 weighted densities
+Weighted.VGLUT2.Only.Density <- mean(VGLUT2.Only.Density.Calcs$Density.VGLUT2.Only.pos, na.rm = TRUE)
+```
+
+```{r VGLUT2 Only Data and Thresholds Comparison Tables - Positive Cell Densities for initial data, eval=TRUE, echo=TRUE}
+VGLUT2.Only.Dens.Cells <- as.data.frame(matrix(ncol = 5, nrow = 7))
+VGLUT2.Only.Dens.Cells <- VGLUT2.Only.Dens.Cells %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+VGLUT2.Only.Dens.Cells$Animal <- VGLUT2.Only.Density.Calcs$Animal
+VGLUT2.Only.Dens.Cells$AgeGroup <- VGLUT2.Only.Density.Calcs$AgeGroup
+VGLUT2.Only.Dens.Cells$Total.Area <- VGLUT2.Only.Density.Calcs$Total.Area
+VGLUT2.Only.Dens.Cells$Pos <- VGLUT2.Only.Density.Calcs$VGLUT2.Only.Positives.per.Animal
+VGLUT2.Only.Dens.Cells$Density <- VGLUT2.Only.Density.Calcs$Density.VGLUT2.Only.pos
+
+print(VGLUT2.Only.Dens.Cells)
+```
+
+```{r VGLUT2 Only Density graph for initial data, echo=TRUE}
+VGLUT2.Only.Dens <- ggplot(VGLUT2.Only.Dens.Cells, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("VGLUT2+") + xlab("AgeGroup")
+ggarrange(VGLUT2.Only.Dens)
+```
+
+```{r VGLUT2+ Only RPL6 Density for initial data}
+library(tidyverse)
+library(ggplot2)
+
+#TH Positives per Animal
+VGLUT2.Only.RPL6.Positives.per.Animal <- VGLUT.Only %>% group_by(Animal) %>% filter(RPL6.Copies >= Threshold.P4) %>% summarise(count=n()) %>% rename("VGLUT2.Only.RPL6.pos.Cells" = "count")
+
+#TH+ Density Calculations
+VGLUT2.Only.RPL6.Density.Calcs <- left_join(VGLUT2.Only.RPL6.Positives.per.Animal, VGLUT2.Only.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.VGLUT2.Only.RPL6.pos = VGLUT2.Only.RPL6.pos.Cells/(Total.Area*20)*1000^3)
+
+#View Weighted TH+ RPL6 Densities
+print(VGLUT2.Only.RPL6.Density.Calcs)
+
+#Mean of VGLUT2+ RPL6+ weighted densities
+Weighted.VGLUT2.Only.RPL6.Density <- mean(VGLUT2.Only.RPL6.Density.Calcs$Density.VGLUT2.Only.RPL6.pos, na.rm = TRUE)
+```
+
+```{r TH & VGLUT2 Graphs for initial data}
+TH.VGLUT2.All <- ggarrange(
+TH.Only.Dens, TH.VGLUT2.Dens, VGLUT2.Only.Dens,
+
+  ncol = 2, nrow = 2, common.legend = TRUE, legend="none")
+
+annotate_figure(TH.VGLUT2.All, top = text_grob("TH & VGLUT2 Analyses", color = "black", face = "bold", size = 14))
+```
+
+```{r RPL6 totals for TH & VGLUT Datasets for initial data}
+
+RPL6.in.TH.Only <- sum(TH.Only$RPL6.Copies, na.rm = TRUE)
+RPL6.in.TH.VGLUT2 <- sum(TH.VGLUT$RPL6.Copies, na.rm = TRUE)
+RPL6.in.VGLUT2.Only <- sum(VGLUT.Only$RPL6.Copies, na.rm = TRUE)
+
+RPL6.TH.VGLUT <- as.data.frame(matrix(ncol = 5, nrow = 3))
+RPL6.TH.VGLUT <- RPL6.TH.VGLUT %>% rename("Group" = "V1",
+                "Sum" = "V2",
+                "Density" = "V3",
+               "Sum.RPL6" = "V4",
+               "Density.RPL6" = "V5")
+RPL6.TH.VGLUT$Group <- c("TH.Only", "TH.VGLUT2", "VGLUT2.Only")
+RPL6.TH.VGLUT$Sum <- c(sum(TH.Only$TH.Copies, na.rm=TRUE), "NA", sum(VGLUT.Only$VGLUT2.Copies, na.rm = TRUE))
+RPL6.TH.VGLUT$Density <- c(Weighted.TH.Only.Density, Weighted.TH.VGLUT2.Density, Weighted.VGLUT2.Only.Density)
+RPL6.TH.VGLUT$Sum.RPL6 <- c(RPL6.in.TH.Only, RPL6.in.TH.VGLUT2, RPL6.in.VGLUT2.Only)
+RPL6.TH.VGLUT$Density.RPL6 <- c(Weighted.TH.Only.RPL6.Density, Weighted.TH.VGLUT.RPL6.Density, Weighted.VGLUT2.Only.RPL6.Density)
+print(RPL6.TH.VGLUT)
+
+```
+
+```{r RPL6 totals for TH & VGLUT Datasets by Age Group for initial data}
+RPL6.AG.Probes <- as.data.frame(matrix(ncol = 5, nrow = 9))
+RPL6.AG.Probes <- RPL6.AG.Probes %>% rename(
+  "Group" = "V1",
+  "AgeGroup" = "V2",
+  "Group.Density" = "V3",
+  "RPL6.sum" = "V4",
+  "RPL6.Density" = "V5")
+RPL6.AG.Probes$Group <- c("TH.Only", "TH.Only", "TH.Only", "TH.VGLUT", "TH.VGLUT", "TH.VGLUT", "VGLUT.Only", "VGLUT.Only", "VGLUT.Only")
+RPL6.AG.Probes$AgeGroup <- c("Young", "Middle.Aged", "Aged", "Young", "Middle.Aged", "Aged", "Young", "Middle.Aged", "Aged")
+
+RPL6.AG.Probes$Group.Density <- c(Weighted.TH.Only.Density[AgeGroup = "Young"], Weighted.TH.Only.Density[AgeGroup = "Middle Aged"], Weighted.TH.Only.Density[AgeGroup = "Aged"], Weighted.TH.VGLUT2.Density[AgeGroup = "Young"], Weighted.TH.VGLUT2.Density[AgeGroup = "Middle Aged"], Weighted.TH.VGLUT2.Density[AgeGroup = "Aged"], Weighted.VGLUT2.Only.Density[AgeGroup = "Young"], Weighted.VGLUT2.Only.Density[AgeGroup = "Middle Aged"], Weighted.VGLUT2.Only.Density[AgeGroup = "Aged"])
+
+RPL6.AG.Probes$Group.Density <- c(mean(TH.Only.Density.Calcs$Density.TH.Only.pos[TH.Only.Density.Calcs$AgeGroup == "Young"]), mean(TH.Only.Density.Calcs$Density.TH.Only.pos[TH.Only.Density.Calcs$AgeGroup == "Middle Aged"]), mean(TH.Only.Density.Calcs$Density.TH.Only.pos[VGLUT2.Only.Density.Calcs$AgeGroup == "Aged"]), mean(TH.VGLUT2.Density.Calcs$Density.TH.VGLUT2.pos[TH.VGLUT2.Density.Calcs$AgeGroup== "Young"]), mean(TH.VGLUT2.Density.Calcs$Density.TH.VGLUT2.pos[TH.VGLUT2.Density.Calcs$AgeGroup == "Middle Aged"]), mean(TH.VGLUT2.Density.Calcs$Density.TH.VGLUT2.pos[TH.VGLUT2.Density.Calcs$AgeGroup == "Aged"]), mean(VGLUT2.Only.Density.Calcs$Density.VGLUT2.Only.pos[VGLUT2.Only.Density.Calcs$AgeGroup == "Young"]), mean(VGLUT2.Only.Density.Calcs$Density.VGLUT2.Only.pos[VGLUT2.Only.Density.Calcs$AgeGroup == "Middle Aged"]), mean(VGLUT2.Only.Density.Calcs$Density.VGLUT2.Only.pos[VGLUT2.Only.Density.Calcs$AgeGroup == "Aged"]))
+
+RPL6.AG.Probes$RPL6.sum <- c(sum(TH.Only.RPL6.Density.Calcs$TH.Only.RPL6.pos.Cells[TH.Only.RPL6.Density.Calcs$AgeGroup == "Young"]), sum(TH.Only.RPL6.Density.Calcs$TH.Only.RPL6.pos.Cells[TH.Only.RPL6.Density.Calcs$AgeGroup == "Middle Aged"]), sum(TH.Only.RPL6.Density.Calcs$TH.Only.RPL6.pos.Cells[TH.Only.RPL6.Density.Calcs$AgeGroup == "Aged"]), sum(TH.VGLUT.RPL6.Density.Calcs$TH.VGLUT.RPL6.pos.Cells[TH.VGLUT.RPL6.Density.Calcs$AgeGroup == "Young"]), sum(TH.VGLUT.RPL6.Density.Calcs$TH.VGLUT.RPL6.pos.Cells[TH.VGLUT.RPL6.Density.Calcs$AgeGroup == "Middle Aged"]), sum(TH.VGLUT.RPL6.Density.Calcs$TH.VGLUT.RPL6.pos.Cells[TH.VGLUT.RPL6.Density.Calcs$AgeGroup == "Aged"]), sum(VGLUT2.Only.RPL6.Density.Calcs$VGLUT2.Only.RPL6.pos.Cells[VGLUT2.Only.RPL6.Density.Calcs$AgeGroup == "Young"]),sum(VGLUT2.Only.RPL6.Density.Calcs$VGLUT2.Only.RPL6.pos.Cells[VGLUT2.Only.RPL6.Density.Calcs$AgeGroup == "Middle Aged"]), sum(VGLUT2.Only.RPL6.Density.Calcs$VGLUT2.Only.RPL6.pos.Cells[VGLUT2.Only.RPL6.Density.Calcs$AgeGroup == "Aged"]))
+
+RPL6.AG.Probes$RPL6.Density <- c(mean(TH.Only.RPL6.Density.Calcs$Density.TH.Only.RPL6.pos[TH.Only.RPL6.Density.Calcs$AgeGroup == "Young"]), mean(TH.Only.RPL6.Density.Calcs$Density.TH.Only.RPL6.pos[TH.Only.RPL6.Density.Calcs$AgeGroup == "Middle Aged"]), mean(TH.Only.RPL6.Density.Calcs$Density.TH.Only.RPL6.pos[TH.Only.RPL6.Density.Calcs$AgeGroup == "Aged"]), mean(TH.VGLUT.RPL6.Density.Calcs$Density.TH.VGLUT.RPL6.pos[TH.VGLUT.RPL6.Density.Calcs$AgeGroup == "Young"]), mean(TH.VGLUT.RPL6.Density.Calcs$Density.TH.VGLUT.RPL6.pos[TH.VGLUT.RPL6.Density.Calcs$AgeGroup == "Middle Aged"]), mean(TH.VGLUT.RPL6.Density.Calcs$Density.TH.VGLUT.RPL6.pos[TH.VGLUT.RPL6.Density.Calcs$AgeGroup == "Aged"]), mean(VGLUT2.Only.RPL6.Density.Calcs$Density.VGLUT2.Only.RPL6.pos[VGLUT2.Only.RPL6.Density.Calcs$AgeGroup == "Young"]), mean(VGLUT2.Only.RPL6.Density.Calcs$Density.VGLUT2.Only.RPL6.pos[VGLUT2.Only.RPL6.Density.Calcs$AgeGroup == "Middle Aged"]), mean(VGLUT2.Only.RPL6.Density.Calcs$Density.VGLUT2.Only.RPL6.pos[VGLUT2.Only.RPL6.Density.Calcs$AgeGroup == "Aged"]))
+
+print(RPL6.AG.Probes)
+
+```
+
+```{r TH with GAPDH (any signal level) for initial data}
+library(tidyverse)
+library(dplyr)
+
+TH.GAPDH <- All.09.05 %>% filter(TH.Copies >= Threshold.P2 & GAPDH.Copies > 0)
+VGLUT2.GAPDH <- All.09.05 %>% filter(VGLUT2.Copies >= Threshold.P2 & GAPDH.Copies > 0)
+RPL6.GAPDH <- All.09.05 %>% filter(RPL6.Copies >= Threshold.P2 & GAPDH.Copies > 0)
+
+```
+
+```{r Importing second set of slides and merging full data sets with assigned number and age groups}
+library(tidyverse)
+library(ggplot2)
+library(dplyr)
+
+setwd("/Young/New/")
+
+A001a.All <- read.csv("Young_2_SNC.csv", header = TRUE)
+A001a.All$Animal <- "2"
+A001a.All$AgeGroup <- "Young"
+A001a.All$Analysis.Region <- "SNC"
+names(A001a.All) <- gsub("Gadph", "GAPDH", names(A001a.All))
+names(A001a.All) <- gsub("Th", "TH", names(A001a.All))
+names(A001a.All) <- gsub("Rpl6", "RPL6", names(A001a.All))
+A001a.All$Analysis.Region <- "SNC"
+
+
+A001b.All <- read.csv("Young_2_VTA.csv", header = TRUE)
+A001b.All$Animal <- "2"
+A001b.All$AgeGroup <- "Young"
+A001b.All$Analysis.Region <- "VTA"
+names(A001b.All) <- gsub("Gadph", "GAPDH", names(A001b.All))
+names(A001b.All) <- gsub("Th", "TH", names(A001b.All))
+names(A001b.All) <- gsub("Rpl6", "RPL6", names(A001b.All))
+
+
+A001c.All <- read.csv("Young_2b_SNC.csv", header = TRUE)
+A001c.All$Animal <- "2"
+A001c.All$AgeGroup <- "Young"
+A001c.All$Analysis.Region <- "SNC"
+names(A001c.All) <- gsub("Gadph", "GAPDH", names(A001c.All))
+names(A001c.All) <- gsub("Slc17a6", "VGLUT2", names(A001c.All))
+names(A001c.All) <- gsub("Rpl6", "RPL6", names(A001c.All))
+A001c.All$Analysis.Region <- "SNC"
+
+
+A001d.All <- read.csv("Young_2b_VTA.csv", header = TRUE)
+A001d.All$Animal <- "2"
+A001d.All$AgeGroup <- "Young"
+A001d.All$Analysis.Region <- "VTA"
+names(A001d.All) <- gsub("Gadph", "GAPDH", names(A001d.All))
+names(A001d.All) <- gsub("Slc17a6", "VGLUT2", names(A001d.All))
+names(A001d.All) <- gsub("Rpl6", "RPL6", names(A001d.All))
+
+
+A002a.All <- read.csv("Young_3_SNC.csv", header = TRUE)
+A002a.All$Animal <- "3"
+A002a.All$AgeGroup <- "Young"
+A002a.All$Analysis.Region <- "SNC"
+names(A002a.All) <- gsub("Gadph", "GAPDH", names(A002a.All))
+names(A002a.All) <- gsub("Th", "TH", names(A002a.All))
+names(A002a.All) <- gsub("Rpl6", "RPL6", names(A002a.All))
+
+
+A002b.All <- read.csv("Young_3_VTA.csv", header = TRUE)
+A002b.All$Animal <- "3"
+A002b.All$AgeGroup <- "Young"
+A002b.All$Analysis.Region <- "VTA"
+names(A002b.All) <- gsub("Gadph", "GAPDH", names(A002b.All))
+names(A002b.All) <- gsub("Th", "TH", names(A002b.All))
+names(A002b.All) <- gsub("Rpl6", "RPL6", names(A002b.All))
+
+A002c.All <- read.csv("Young_3b_SNC.csv", header = TRUE)
+A002c.All$Animal <- "3"
+A002c.All$AgeGroup <- "Young"
+A002c.All$Analysis.Region <- "SNC"
+names(A002c.All) <- gsub("Gadph", "GAPDH", names(A002c.All))
+names(A002c.All) <- gsub("Slc17a6", "VGLUT2", names(A002c.All))
+names(A002c.All) <- gsub("Rpl6", "RPL6", names(A002c.All))
+
+A002d.All <- read.csv("Young_3b_VTA.csv", header = TRUE)
+A002d.All$Animal <- "3"
+A002d.All$AgeGroup <- "Young"
+A002d.All$Analysis.Region <- "VTA"
+names(A002d.All) <- gsub("Gadph", "GAPDH", names(A002d.All))
+names(A002d.All) <- gsub("Slc17a6", "VGLUT2", names(A002d.All))
+names(A002d.All) <- gsub("Rpl6", "RPL6", names(A002d.All))
+
+
+A003a.All <- read.csv("Young_4_SNC.csv", header = TRUE)
+A003a.All$Animal <- "4"
+A003a.All$AgeGroup <- "Young"
+names(A003a.All) <- gsub("Gadph", "GAPDH", names(A003a.All))
+names(A003a.All) <- gsub("Th", "TH", names(A003a.All))
+names(A003a.All) <- gsub("Rpl6", "RPL6", names(A003a.All))
+A003a.All$Analysis.Region <- "SNC"
+
+A003b.All <- read.csv("Young_4_VTA.csv", header = TRUE)
+A003b.All$Animal <- "4"
+A003b.All$AgeGroup <- "Young"
+A003b.All$Analysis.Region <- "VTA"
+names(A003b.All) <- gsub("Gadph", "GAPDH", names(A003b.All))
+names(A003b.All) <- gsub("Th", "TH", names(A003b.All))
+names(A003b.All) <- gsub("Rpl6", "RPL6", names(A003b.All))
+
+A003c.All <- read.csv("Young_4b_SNC.csv", header = TRUE)
+A003c.All$Animal <- "4"
+A003c.All$AgeGroup <- "Young"
+names(A003c.All) <- gsub("Gadph", "GAPDH", names(A003c.All))
+names(A003c.All) <- gsub("Slc17a6", "VGLUT2", names(A003c.All))
+names(A003c.All) <- gsub("Rpl6", "RPL6", names(A003c.All))
+A003c.All$Analysis.Region <- "SNC"
+
+A003d.All <- read.csv("Young_4b_VTA.csv", header = TRUE)
+A003d.All$Animal <- "4"
+A003d.All$AgeGroup <- "Young"
+A003d.All$Analysis.Region <- "VTA"
+names(A003d.All) <- gsub("Gadph", "GAPDH", names(A003d.All))
+names(A003d.All) <- gsub("Slc17a6", "VGLUT2", names(A003d.All))
+names(A003d.All) <- gsub("Rpl6", "RPL6", names(A003d.All))
+
+A004a.All <- read.csv("Young_5_SNC.csv", header = TRUE)
+A004a.All$Animal <- "5"
+A004a.All$AgeGroup <- "Young"
+names(A004a.All) <- gsub("Gadph", "GAPDH", names(A004a.All))
+names(A004a.All) <- gsub("Slc17a6", "VGLUT2", names(A004a.All))
+names(A004a.All) <- gsub("Rpl6", "RPL6", names(A004a.All))
+A004a.All$Analysis.Region <- "SNC"
+
+A004b.All <- read.csv("Young_5_VTA.csv", header = TRUE)
+A004b.All$Animal <- "5"
+A004b.All$AgeGroup <- "Young"
+A004b.All$Analysis.Region <- "VTA"
+names(A004b.All) <- gsub("Gadph", "GAPDH", names(A004b.All))
+names(A004b.All) <- gsub("Slc17a6", "VGLUT2", names(A004b.All))
+names(A004b.All) <- gsub("Rpl6", "RPL6", names(A004b.All))
+
+A004c.All <- read.csv("Young_5b_SNC.csv", header = TRUE)
+A004c.All$Animal <- "5"
+A004c.All$AgeGroup <- "Young"
+A004c.All$Analysis.Region <- "SNC"
+names(A004c.All) <- gsub("Gadph", "GAPDH", names(A004c.All))
+names(A004c.All) <- gsub("Th", "TH", names(A004c.All))
+names(A004c.All) <- gsub("Rpl6", "RPL6", names(A004c.All))
+
+A004d.All <- read.csv("Young_5b_VTA.csv", header = TRUE)
+A004d.All$Animal <- "5"
+A004d.All$AgeGroup <- "Young"
+A004d.All$Analysis.Region <- "VTA"
+names(A004d.All) <- gsub("Gadph", "GAPDH", names(A004d.All))
+names(A004d.All) <- gsub("Th", "TH", names(A004d.All))
+names(A004d.All) <- gsub("Rpl6", "RPL6", names(A004d.All))
+
+A005a.All <- read.csv("Young_New_1_SNC.csv", header = TRUE)
+A005a.All$Animal <- "6"
+A005a.All$AgeGroup <- "Young"
+names(A005a.All) <- gsub("Scl17a6", "VGLUT2", names(A005a.All))
+names(A005a.All) <- gsub("Rpl6", "RPL6", names(A005a.All))
+A005a.All$Analysis.Region <- "SNC"
+
+A005b.All <- read.csv("Young_New_1_VTA.csv", header = TRUE)
+A005b.All$Animal <- "6"
+A005b.All$AgeGroup <- "Young"
+A005b.All$Analysis.Region <- "VTA"
+names(A005b.All) <- gsub("Scl17a6", "VGLUT2", names(A005b.All))
+names(A005b.All) <- gsub("Rpl6", "RPL6", names(A005b.All))
+
+A005c.All <- read.csv("Young_New_1b_SNC.csv", header = TRUE)
+A005c.All$Animal <- "6"
+A005c.All$AgeGroup <- "Young"
+names(A005c.All) <- gsub("Slc17a6", "VGLUT2", names(A005c.All))
+names(A005c.All) <- gsub("Rpl6", "RPL6", names(A005c.All))
+A005c.All$Analysis.Region <- "SNC"
+
+A005d.All <- read.csv("Young_New_1b_VTA.csv", header = TRUE)
+A005d.All$Animal <- "6"
+A005d.All$AgeGroup <- "Young"
+A005d.All$Analysis.Region <- "VTA"
+names(A005d.All) <- gsub("Slc17a6", "VGLUT2", names(A005d.All))
+names(A005d.All) <- gsub("Rpl6", "RPL6", names(A005d.All))
+
+A005e.All <- read.csv("Young_New_1c_SNC.csv", header = TRUE)
+A005e.All$Animal <- "6"
+A005e.All$AgeGroup <- "Young"
+names(A005e.All) <- gsub("Gapdh", "GAPDH", names(A005e.All))
+names(A005e.All) <- gsub("Rpl6", "RPL6", names(A005e.All))
+A005e.All$Analysis.Region <- "SNC"
+
+A005f.All <- read.csv("Young_New_1c_VTA.csv", header = TRUE)
+A005f.All$Animal <- "6"
+A005f.All$AgeGroup <- "Young"
+A005f.All$Analysis.Region <- "VTA"
+names(A005f.All) <- gsub("Gapdh", "GAPDH", names(A005f.All))
+names(A005f.All) <- gsub("Rpl6", "RPL6", names(A005f.All))
+
+A006a.All <- read.csv("Young_New_2_SNC.csv", header = TRUE)
+A006a.All$Animal <- "7"
+A006a.All$AgeGroup <- "Young"
+names(A006a.All) <- gsub("Gapdh", "GAPDH", names(A006a.All))
+names(A006a.All) <- gsub("Rpl6", "RPL6", names(A006a.All))
+A006a.All$Analysis.Region <- "SNC"
+
+A006b.All <- read.csv("Young_New_2_VTA.csv", header = TRUE)
+A006b.All$Animal <- "7"
+A006b.All$AgeGroup <- "Young"
+A006b.All$Analysis.Region <- "VTA"
+names(A006b.All) <- gsub("Gapdh", "GAPDH", names(A006b.All))
+names(A006b.All) <- gsub("Rpl6", "RPL6", names(A006b.All))
+
+A007a.All <- read.csv("Young_New_3_SNC.csv", header = TRUE)
+A007a.All$Animal <- "8"
+A007a.All$AgeGroup <- "Young"
+names(A007a.All) <- gsub("Slc17a6", "VGLUT2", names(A007a.All))
+A007a.All$Analysis.Region <- "SNC"
+
+A007b.All <- read.csv("Young_New_3_VTA.csv", header = TRUE)
+A007b.All$Animal <- "8"
+A007b.All$AgeGroup <- "Young"
+A007b.All$Analysis.Region <- "VTA"
+names(A007b.All) <- gsub("Slc17a6", "VGLUT2", names(A007b.All))
+
+A007c.All <- read.csv("Young_New_3b_SNC.csv", header = TRUE)
+A007c.All$Animal <- "8"
+A007c.All$AgeGroup <- "Young"
+names(A007c.All) <- gsub("Slc17a6", "VGLUT2", names(A007c.All))
+A007c.All$Analysis.Region <- "SNC"
+
+A007d.All <- read.csv("Young_New_3b_VTA.csv", header = TRUE)
+A007d.All$Animal <- "8"
+A007d.All$AgeGroup <- "Young"
+A007d.All$Analysis.Region <- "VTA"
+names(A007d.All) <- gsub("Slc17a6", "VGLUT2", names(A007d.All))
+
+A008a.All <- read.csv("Young_New_4_SNC.csv", header = TRUE)
+A008a.All$Animal <- "9"
+A008a.All$AgeGroup <- "Young"
+names(A008a.All) <- gsub("Gapdh", "GAPDH", names(A008a.All))
+names(A008a.All) <- gsub("Rpl6", "RPL6", names(A008a.All))
+A008a.All$Analysis.Region <- "SNC"
+
+A008b.All <- read.csv("Young_New_4_VTA.csv", header = TRUE)
+A008b.All$Animal <- "9"
+A008b.All$AgeGroup <- "Young"
+A008b.All$Analysis.Region <- "VTA"
+names(A008b.All) <- gsub("Gapdh", "GAPDH", names(A008b.All))
+names(A008b.All) <- gsub("Rpl6", "RPL6", names(A008b.All))
+
+A008c.All <- read.csv("Young_New_4b_SNC.csv", header = TRUE)
+A008c.All$Animal <- "9"
+A008c.All$AgeGroup <- "Young"
+names(A008c.All) <- gsub("Slc17a6", "VGLUT2", names(A008c.All))
+names(A008c.All) <- gsub("Rpl6", "RPL6", names(A008c.All))
+A008c.All$Analysis.Region <- "SNC"
+
+A008d.All <- read.csv("Young_New_4b_VTA.csv", header = TRUE)
+A008d.All$Animal <- "9"
+A008d.All$AgeGroup <- "Young"
+A008d.All$Analysis.Region <- "VTA"
+names(A008d.All) <- gsub("Slc17a6", "VGLUT2", names(A008d.All))
+names(A008d.All) <- gsub("Rpl6", "RPL6", names(A008d.All))
+
+
+
+setwd("/Middle/New/")
+
+B001a.All <- read.csv("Middle.7.SNC.csv", header = TRUE)
+B001a.All$Animal <- "10"
+B001a.All$AgeGroup <- "Middle_Aged"
+names(B001a.All) <- gsub("Gadph", "GAPDH", names(B001a.All))
+names(B001a.All) <- gsub("Th", "TH", names(B001a.All))
+names(B001a.All) <- gsub("Rpl6", "RPL6", names(B001a.All))
+B001a.All$Analysis.Region <- "SNC"
+
+
+B001b.All <- read.csv("Middle.7.VTA.csv", header = TRUE)
+B001b.All$Animal <- "10"
+B001b.All$AgeGroup <- "Middle_Aged"
+B001b.All$Analysis.Region <- "VTA"
+names(B001b.All) <- gsub("Gadph", "GAPDH", names(B001b.All))
+names(B001b.All) <- gsub("Th", "TH", names(B001b.All))
+names(B001b.All) <- gsub("Rpl6", "RPL6", names(B001b.All))
+
+
+B001c.All <- read.csv("Middle.7b.SNC.csv", header = TRUE)
+B001c.All$Animal <- "10"
+B001c.All$AgeGroup <- "Middle_Aged"
+names(B001c.All) <- gsub("Gadph", "GAPDH", names(B001c.All))
+names(B001c.All) <- gsub("Slc17a6", "VGLUT2", names(B001c.All))
+names(B001c.All) <- gsub("Rpl6", "RPL6", names(B001c.All))
+B001c.All$Analysis.Region <- "SNC"
+
+
+B001d.All <- read.csv("Middle.7b.VTA.csv", header = TRUE)
+B001d.All$Animal <- "10"
+B001d.All$AgeGroup <- "Middle_Aged"
+B001d.All$Analysis.Region <- "VTA"
+names(B001d.All) <- gsub("Gadph", "GAPDH", names(B001d.All))
+names(B001d.All) <- gsub("Slc17a6", "VGLUT2", names(B001d.All))
+names(B001d.All) <- gsub("Rpl6", "RPL6", names(B001d.All))
+
+B002a.All <- read.csv("Middle.8.SNC.csv", header = TRUE)
+B002a.All$Animal <- "11"
+B002a.All$AgeGroup <- "Middle_Aged"
+names(B002a.All) <- gsub("Gadph", "GAPDH", names(B002a.All))
+names(B002a.All) <- gsub("Th", "TH", names(B002a.All))
+names(B002a.All) <- gsub("Rpl6", "RPL6", names(B002a.All))
+B002a.All$Analysis.Region <- "SNC"
+
+
+B002b.All <- read.csv("Middle.8.VTA.csv", header = TRUE)
+B002b.All$Animal <- "11"
+B002b.All$AgeGroup <- "Middle_Aged"
+B002b.All$Analysis.Region <- "VTA"
+names(B002b.All) <- gsub("Gadph", "GAPDH", names(B002b.All))
+names(B002b.All) <- gsub("Th", "TH", names(B002b.All))
+names(B002b.All) <- gsub("Rpl6", "RPL6", names(B002b.All))
+
+
+B002c.All <- read.csv("Middle.8b.SNC.csv", header = TRUE)
+B002c.All$Animal <- "11"
+B002c.All$AgeGroup <- "Middle_Aged"
+names(B002c.All) <- gsub("Gadph", "GAPDH", names(B002c.All))
+names(B002c.All) <- gsub("Slc17a6", "VGLUT2", names(B002c.All))
+names(B002c.All) <- gsub("Rpl6", "RPL6", names(B002c.All))
+B002c.All$Analysis.Region <- "SNC"
+
+
+B002d.All <- read.csv("Middle.8b.VTA.csv", header = TRUE)
+B002d.All$Animal <- "11"
+B002d.All$AgeGroup <- "Middle_Aged"
+B002d.All$Analysis.Region <- "VTA"
+names(B002d.All) <- gsub("Gadph", "GAPDH", names(B002d.All))
+names(B002d.All) <- gsub("Slc17a6", "VGLUT2", names(B002d.All))
+names(B002d.All) <- gsub("Rpl6", "RPL6", names(B002d.All))
+
+B003a.All <- read.csv("Middle.9.SNC.csv", header = TRUE)
+B003a.All$Animal <- "12"
+B003a.All$AgeGroup <- "Middle_Aged"
+names(B003a.All) <- gsub("Gadph", "GAPDH", names(B003a.All))
+names(B003a.All) <- gsub("Th", "TH", names(B003a.All))
+names(B003a.All) <- gsub("Rpl6", "RPL6", names(B003a.All))
+B003a.All$Analysis.Region <- "SNC"
+
+
+B003b.All <- read.csv("Middle.9.VTA.csv", header = TRUE)
+B003b.All$Animal <- "12"
+B003b.All$AgeGroup <- "Middle_Aged"
+B003b.All$Analysis.Region <- "VTA"
+names(B003b.All) <- gsub("Gadph", "GAPDH", names(B003b.All))
+names(B003b.All) <- gsub("Th", "TH", names(B003b.All))
+names(B003b.All) <- gsub("Rpl6", "RPL6", names(B003b.All))
+
+
+B003c.All <- read.csv("Middle.9b.SNC.csv", header = TRUE)
+B003c.All$Animal <- "12"
+B003c.All$AgeGroup <- "Middle_Aged"
+names(B003c.All) <- gsub("Gadph", "GAPDH", names(B003c.All))
+names(B003c.All) <- gsub("Slc17a6", "VGLUT2", names(B003c.All))
+names(B003c.All) <- gsub("Rpl6", "RPL6", names(B003c.All))
+B003c.All$Analysis.Region <- "SNC"
+
+
+B003d.All <- read.csv("Middle.9b.VTA.csv", header = TRUE)
+B003d.All$Animal <- "12"
+B003d.All$AgeGroup <- "Middle_Aged"
+B003d.All$Analysis.Region <- "VTA"
+names(B003d.All) <- gsub("Gadph", "GAPDH", names(B003d.All))
+names(B003d.All) <- gsub("Slc17a6", "VGLUT2", names(B003d.All))
+names(B003d.All) <- gsub("Rpl6", "RPL6", names(B003d.All))
+
+B004a.All <- read.csv("Middle.10.SNC.csv", header = TRUE)
+B004a.All$Animal <- "13"
+B004a.All$AgeGroup <- "Middle_Aged"
+names(B004a.All) <- gsub("Gadph", "GAPDH", names(B004a.All))
+names(B004a.All) <- gsub("Th", "TH", names(B004a.All))
+names(B004a.All) <- gsub("Rpl6", "RPL6", names(B004a.All))
+B004a.All$Analysis.Region <- "SNC"
+
+
+B004b.All <- read.csv("Middle.10.VTA.csv", header = TRUE)
+B004b.All$Animal <- "13"
+B004b.All$AgeGroup <- "Middle_Aged"
+B004b.All$Analysis.Region <- "VTA"
+names(B004b.All) <- gsub("Gadph", "GAPDH", names(B004b.All))
+names(B004b.All) <- gsub("Th", "TH", names(B004b.All))
+names(B004b.All) <- gsub("Rpl6", "RPL6", names(B004b.All))
+
+
+B004c.All <- read.csv("Middle.10b.SNC.csv", header = TRUE)
+B004c.All$Animal <- "13"
+B004c.All$AgeGroup <- "Middle_Aged"
+names(B004c.All) <- gsub("Gadph", "GAPDH", names(B004c.All))
+names(B004c.All) <- gsub("Slc17a6", "VGLUT2", names(B004c.All))
+names(B004c.All) <- gsub("Rpl6", "RPL6", names(B004c.All))
+B004c.All$Analysis.Region <- "SNC"
+
+
+B004d.All <- read.csv("Middle.10b.VTA.csv", header = TRUE)
+B004d.All$Animal <- "13"
+B004d.All$AgeGroup <- "Middle_Aged"
+B004d.All$Analysis.Region <- "VTA"
+names(B004d.All) <- gsub("Gadph", "GAPDH", names(B004d.All))
+names(B004d.All) <- gsub("Slc17a6", "VGLUT2", names(B004d.All))
+names(B004d.All) <- gsub("Rpl6", "RPL6", names(B004d.All))
+
+B005a.All <- read.csv("Middle.11.new.SNC.csv", header = TRUE)
+B005a.All$Animal <- "14"
+B005a.All$AgeGroup <- "Middle_Aged"
+names(B005a.All) <- gsub("Gapdh", "GAPDH", names(B005a.All))
+names(B005a.All) <- gsub("Rpl6", "RPL6", names(B005a.All))
+B005a.All$Analysis.Region <- "SNC"
+
+
+B005b.All <- read.csv("Middle.11.new.VTA.csv", header = TRUE)
+B005b.All$Animal <- "14"
+B005b.All$AgeGroup <- "Middle_Aged"
+B005b.All$Analysis.Region <- "VTA"
+names(B005b.All) <- gsub("Slc17a6", "VGLUT2", names(B005b.All))
+names(B005b.All) <- gsub("Th", "TH", names(B005b.All))
+names(B005b.All) <- gsub("Rpl6", "RPL6", names(B005b.All))
+
+
+B005c.All <- read.csv("Middle.11b.new.SNC.csv", header = TRUE)
+B005c.All$Animal <- "14"
+B005c.All$AgeGroup <- "Middle_Aged"
+names(B005c.All) <- gsub("Gapdh", "GAPDH", names(B005c.All))
+names(B005c.All) <- gsub("Rpl6", "RPL6", names(B005c.All))
+B005c.All$Analysis.Region <- "SNC"
+
+
+B005d.All <- read.csv("Middle.11b.new.VTA.csv", header = TRUE)
+B005d.All$Animal <- "14"
+B005d.All$AgeGroup <- "Middle_Aged"
+B005d.All$Analysis.Region <- "VTA"
+names(B005d.All) <- gsub("Gapdh", "GAPDH", names(B005d.All))
+names(B005d.All) <- gsub("Rpl6", "RPL6", names(B005d.All))
+
+
+setwd("/Aged/New")
+
+C001a.All <- read.csv("Old_1a_SNC.csv", header = TRUE)
+C001a.All$Animal <- "15"
+C001a.All$AgeGroup <- "Aged"
+names(C001a.All) <- gsub("Slc17a6", "VGLUT2", names(C001a.All))
+names(C001a.All) <- gsub("Th", "TH", names(C001a.All))
+names(C001a.All) <- gsub("Rpl6", "RPL6", names(C001a.All))
+C001a.All$Analysis.Region <- "SNC"
+
+
+C001b.All <- read.csv("Old_1a_VTA.csv", header = TRUE)
+C001b.All$Animal <- "15"
+C001b.All$AgeGroup <- "Aged"
+C001b.All$Analysis.Region <- "VTA"
+names(C001b.All) <- gsub("Slc17a6", "VGLUT2", names(C001b.All))
+names(C001b.All) <- gsub("Rpl6", "RPL6", names(C001b.All))
+
+
+C001c.All <- read.csv("Old_1b_SNC.csv", header = TRUE)
+C001c.All$Animal <- "15"
+C001c.All$AgeGroup <- "Aged"
+names(C001c.All) <- gsub("Slc17a6", "VGLUT2", names(C001c.All))
+names(C001c.All) <- gsub("Rpl6", "RPL6", names(C001c.All))
+C001c.All$Analysis.Region <- "SNC"
+
+
+C001d.All <- read.csv("Old_1b_VTA.csv", header = TRUE)
+C001d.All$Animal <- "15"
+C001d.All$AgeGroup <- "Aged"
+C001d.All$Analysis.Region <- "VTA"
+names(C001d.All) <- gsub("Slc17a6", "VGLUT2", names(C001d.All))
+names(C001d.All) <- gsub("Rpl6", "RPL6", names(C001d.All))
+
+
+C002a.All <- read.csv("Old_2_SNC.csv", header = TRUE)
+C002a.All$Animal <- "16"
+C002a.All$AgeGroup <- "Aged"
+names(C002a.All) <- gsub("Gapdh", "GAPDH", names(C002a.All))
+names(C002a.All) <- gsub("Rpl6", "RPL6", names(C002a.All))
+C002a.All$Analysis.Region <- "SNC"
+
+
+C002b.All <- read.csv("Old_2_VTA.csv", header = TRUE)
+C002b.All$Animal <- "16"
+C002b.All$AgeGroup <- "Aged"
+C002b.All$Analysis.Region <- "VTA"
+names(C002b.All) <- gsub("Gapdh", "GAPDH", names(C002b.All))
+names(C002b.All) <- gsub("Rpl6", "RPL6", names(C002b.All))
+
+
+C003a.All <- read.csv("Old_11_SNC.csv", header = TRUE)
+C003a.All$Animal <- "17"
+C003a.All$AgeGroup <- "Aged"
+names(C003a.All) <- gsub("Slc17a6", "VGLUT2", names(C003a.All))
+names(C003a.All) <- gsub("Rpl6", "RPL6", names(C003a.All))
+C003a.All$Analysis.Region <- "SNC"
+
+
+C003b.All <- read.csv("Old_11_VTA.csv", header = TRUE)
+C003b.All$Animal <- "17"
+C003b.All$AgeGroup <- "Aged"
+C003b.All$Analysis.Region <- "VTA"
+names(C003b.All) <- gsub("Slc17a6", "VGLUT2", names(C003b.All))
+names(C003b.All) <- gsub("Rpl6", "RPL6", names(C003b.All))
+
+
+C004a.All <- read.csv("Old_13a_SNC.csv", header = TRUE)
+C004a.All$Animal <- "18"
+C004a.All$AgeGroup <- "Aged"
+names(C004a.All) <- gsub("Gadph", "GAPDH", names(C004a.All))
+names(C004a.All) <- gsub("Slc17a6", "VGLUT2", names(C004a.All))
+names(C004a.All) <- gsub("Rpl6", "RPL6", names(C004a.All))
+C004a.All$Analysis.Region <- "SNC"
+
+
+C004b.All <- read.csv("Old_13a_VTA.csv", header = TRUE)
+C004b.All$Animal <- "18"
+C004b.All$AgeGroup <- "Aged"
+C004b.All$Analysis.Region <- "VTA"
+names(C004b.All) <- gsub("Gadph", "GAPDH", names(C004b.All))
+names(C004b.All) <- gsub("Slc17a6", "VGLUT2", names(C004b.All))
+names(C004b.All) <- gsub("Rpl6", "RPL6", names(C004b.All))
+
+
+C005a.All <- read.csv("Old_14_SNC.csv", header = TRUE)
+C005a.All$Animal <- "19"
+C005a.All$AgeGroup <- "Aged"
+names(C005a.All) <- gsub("Gadph", "GAPDH", names(C005a.All))
+names(C005a.All) <- gsub("Th", "TH", names(C005a.All))
+names(C005a.All) <- gsub("Rpl6", "RPL6", names(C005a.All))
+C005a.All$Analysis.Region <- "SNC"
+
+
+C005b.All <- read.csv("Old_14_VTA.csv", header = TRUE)
+C005b.All$Animal <- "19"
+C005b.All$AgeGroup <- "Aged"
+C005b.All$Analysis.Region <- "VTA"
+names(C005b.All) <- gsub("Gadph", "GAPDH", names(C005b.All))
+names(C005b.All) <- gsub("Th", "TH", names(C005b.All))
+names(C005b.All) <- gsub("Rpl6", "RPL6", names(C005b.All))
+
+
+C005c.All <- read.csv("Old_14b_SNC.csv", header = TRUE)
+C005c.All$Animal <- "19"
+C005c.All$AgeGroup <- "Aged"
+names(C005c.All) <- gsub("Gadph", "GAPDH", names(C005c.All))
+names(C005c.All) <- gsub("Slc17a6", "VGLUT2", names(C005c.All))
+names(C005c.All) <- gsub("Rpl6", "RPL6", names(C005c.All))
+C005c.All$Analysis.Region <- "SNC"
+
+
+C005d.All <- read.csv("Old_14b_VTA.csv", header = TRUE)
+C005d.All$Animal <- "19"
+C005d.All$AgeGroup <- "Aged"
+names(C005d.All) <- gsub("Gadph", "GAPDH", names(C005d.All))
+names(C005d.All) <- gsub("Slc17a6", "VGLUT2", names(C005d.All))
+names(C005d.All) <- gsub("Rpl6", "RPL6", names(C005d.All))
+C005d.All$Analysis.Region <- "VTA"
+
+All.01.25 <- full_join(A001a.All, A001b.All)
+All.01.25 <- full_join(All.01.25, A001c.All)
+All.01.25 <- full_join(All.01.25, A001d.All)
+All.01.25 <- full_join(All.01.25, A002a.All)
+All.01.25 <- full_join(All.01.25, A002b.All)
+All.01.25 <- full_join(All.01.25, A002c.All)
+All.01.25 <- full_join(All.01.25, A002d.All)
+All.01.25 <- full_join(All.01.25, A003a.All)
+All.01.25 <- full_join(All.01.25, A003b.All)
+All.01.25 <- full_join(All.01.25, A003c.All)
+All.01.25 <- full_join(All.01.25, A003d.All)
+All.01.25 <- full_join(All.01.25, A004a.All)
+All.01.25 <- full_join(All.01.25, A004b.All)
+All.01.25 <- full_join(All.01.25, A004c.All)
+All.01.25 <- full_join(All.01.25, A004d.All)
+All.01.25 <- full_join(All.01.25, A005a.All)
+All.01.25 <- full_join(All.01.25, A005b.All)
+All.01.25 <- full_join(All.01.25, A005c.All)
+All.01.25 <- full_join(All.01.25, A005d.All)
+All.01.25 <- full_join(All.01.25, A005e.All)
+All.01.25 <- full_join(All.01.25, A005f.All)
+All.01.25 <- full_join(All.01.25, A006a.All)
+All.01.25 <- full_join(All.01.25, A006b.All)
+All.01.25 <- full_join(All.01.25, A007a.All)
+All.01.25 <- full_join(All.01.25, A007b.All)
+All.01.25 <- full_join(All.01.25, A007c.All)
+All.01.25 <- full_join(All.01.25, A007d.All)
+All.01.25 <- full_join(All.01.25, A008a.All)
+All.01.25 <- full_join(All.01.25, A008b.All)
+All.01.25 <- full_join(All.01.25, A008c.All)
+All.01.25 <- full_join(All.01.25, A008d.All)
+All.01.25 <- full_join(All.01.25, B001a.All)
+All.01.25 <- full_join(All.01.25, B001b.All)
+All.01.25 <- full_join(All.01.25, B001c.All)
+All.01.25 <- full_join(All.01.25, B001d.All)
+All.01.25 <- full_join(All.01.25, B002a.All)
+All.01.25 <- full_join(All.01.25, B002b.All)
+All.01.25 <- full_join(All.01.25, B002c.All)
+All.01.25 <- full_join(All.01.25, B002d.All)
+All.01.25 <- full_join(All.01.25, B003a.All)
+All.01.25 <- full_join(All.01.25, B003b.All)
+All.01.25 <- full_join(All.01.25, B003c.All)
+All.01.25 <- full_join(All.01.25, B003d.All)
+All.01.25 <- full_join(All.01.25, B004a.All)
+All.01.25 <- full_join(All.01.25, B004b.All)
+All.01.25 <- full_join(All.01.25, B004c.All)
+All.01.25 <- full_join(All.01.25, B004d.All)
+All.01.25 <- full_join(All.01.25, B001a.All)
+All.01.25 <- full_join(All.01.25, B005b.All)
+All.01.25 <- full_join(All.01.25, B005c.All)
+All.01.25 <- full_join(All.01.25, B005d.All)
+All.01.25 <- full_join(All.01.25, C001a.All)
+All.01.25 <- full_join(All.01.25, C001b.All)
+All.01.25 <- full_join(All.01.25, C001c.All)
+All.01.25 <- full_join(All.01.25, C001d.All)
+All.01.25 <- full_join(All.01.25, C002a.All)
+All.01.25 <- full_join(All.01.25, C002b.All)
+All.01.25 <- full_join(All.01.25, C003a.All)
+All.01.25 <- full_join(All.01.25, C003b.All)
+All.01.25 <- full_join(All.01.25, C004a.All)
+All.01.25 <- full_join(All.01.25, C004b.All)
+All.01.25 <- full_join(All.01.25, C005a.All)
+All.01.25 <- full_join(All.01.25, C005b.All)
+All.01.25 <- full_join(All.01.25, C005c.All)
+All.01.25 <- full_join(All.01.25, C005d.All)
+
+
+setwd("")
+write.csv(All.01.25, "All.01.25.csv")
+```
+
+```{r Summary Files for second set of slides}
+setwd("/Young/New")
+
+A001a.Sum <- read.csv("Young_2_Sum.csv", header = TRUE)
+A001a.Sum$Animal <- "2"
+A001a.Sum$AgeGroup <- "Young"
+names(A001a.Sum) <- gsub("Gadph", "GAPDH", names(A001a.Sum))
+names(A001a.Sum) <- gsub("Th", "TH", names(A001a.Sum))
+names(A001a.Sum) <- gsub("Rpl6", "RPL6", names(A001a.Sum))
+
+A001b.Sum <- read.csv("Young_2b_Sum.csv", header = TRUE)
+A001b.Sum$Animal <- "2"
+A001b.Sum$AgeGroup <- "Young"
+names(A001b.Sum) <- gsub("Gadph", "GAPDH", names(A001b.Sum))
+names(A001b.Sum) <- gsub("Slc17a6", "VGLUT2", names(A001b.Sum))
+names(A001b.Sum) <- gsub("Rpl6", "RPL6", names(A001b.Sum))
+
+A002a.Sum <- read.csv("Young_3_Sum.csv", header = TRUE)
+A002a.Sum$Animal <- "3"
+A002a.Sum$AgeGroup <- "Young"
+names(A002a.Sum) <- gsub("Gadph", "GAPDH", names(A002a.Sum))
+names(A002a.Sum) <- gsub("Rpl6", "RPL6", names(A002a.Sum))
+
+A002b.Sum <- read.csv("Young_3b_Sum.csv", header = TRUE)
+A002b.Sum$Animal <- "3"
+A002b.Sum$AgeGroup <- "Young"
+names(A002b.Sum) <- gsub("Gadph", "GAPDH", names(A002b.Sum))
+names(A002b.Sum) <- gsub("Slc17a6", "VGLUT2", names(A002b.Sum))
+names(A002b.Sum) <- gsub("Rpl6", "RPL6", names(A002b.Sum))
+
+A003a.Sum <- read.csv("Young_4_Sum.csv", header = TRUE)
+A003a.Sum$Animal <- "4"
+A003a.Sum$AgeGroup <- "Young"
+names(A003a.Sum) <- gsub("Gadph", "GAPDH", names(A003a.Sum))
+names(A003a.Sum) <- gsub("Th", "TH", names(A003a.Sum))
+names(A003a.Sum) <- gsub("Rpl6", "RPL6", names(A003a.Sum))
+
+A003b.Sum <- read.csv("Young_4b_Sum.csv", header = TRUE)
+A003b.Sum$Animal <- "4"
+A003b.Sum$AgeGroup <- "Young"
+names(A003b.Sum) <- gsub("Gadph", "GAPDH", names(A003b.Sum))
+names(A003b.Sum) <- gsub("Slc17a6", "VGLUT2", names(A003b.Sum))
+names(A003b.Sum) <- gsub("Rpl6", "RPL6", names(A003b.Sum))
+
+A004a.Sum <- read.csv("Young_5_Sum.csv", header = TRUE)
+A004a.Sum$Animal <- "5"
+A004a.Sum$AgeGroup <- "Young"
+names(A004a.Sum) <- gsub("Gadph", "GAPDH", names(A004a.Sum))
+names(A004a.Sum) <- gsub("Slc17a6", "VGLUT2", names(A004a.Sum))
+names(A004a.Sum) <- gsub("Rpl6", "RPL6", names(A004a.Sum))
+
+A004b.Sum <- read.csv("Young_5b_Sum.csv", header = TRUE)
+A004b.Sum$Animal <- "5"
+A004b.Sum$AgeGroup <- "Young"
+names(A004b.Sum) <- gsub("Gadph", "GAPDH", names(A004b.Sum))
+names(A004b.Sum) <- gsub("Th", "TH", names(A004b.Sum))
+names(A004b.Sum) <- gsub("Rpl6", "RPL6", names(A004b.Sum))
+
+A005a.Sum <- read.csv("Young_New_1_Sum.csv", header = TRUE)
+A005a.Sum$Animal <- "6"
+A005a.Sum$AgeGroup <- "Young"
+names(A005a.Sum) <- gsub("Scl17a6", "VGLUT2", names(A005a.Sum))
+names(A005a.Sum) <- gsub("Rpl6", "RPL6", names(A005a.Sum))
+
+A005b.Sum <- read.csv("Young_New_1b_Sum.csv", header = TRUE)
+A005b.Sum$Animal <- "6"
+A005b.Sum$AgeGroup <- "Young"
+names(A005b.Sum) <- gsub("Slc17a6", "VGLUT2", names(A005b.Sum))
+names(A005b.Sum) <- gsub("Rpl6", "RPL6", names(A005b.Sum))
+
+A005c.Sum <- read.csv("Young_New_1c_Sum.csv", header = TRUE)
+A005c.Sum$Animal <- "6"
+A005c.Sum$AgeGroup <- "Young"
+names(A005c.Sum) <- gsub("Gapdh", "GAPDH", names(A005c.Sum))
+names(A005c.Sum) <- gsub("Rpl6", "RPL6", names(A005c.Sum))
+
+A006a.Sum <- read.csv("Young_New_2_Sum.csv", header = TRUE)
+A006a.Sum$Animal <- "7"
+A006a.Sum$AgeGroup <- "Young"
+names(A006a.Sum) <- gsub("Gapdh", "GAPDH", names(A006a.Sum))
+names(A006a.Sum) <- gsub("Rpl6", "RPL6", names(A006a.Sum))
+
+A007a.Sum <- read.csv("Young_New_3_Sum.csv", header = TRUE)
+A007a.Sum$Animal <- "8"
+A007a.Sum$AgeGroup <- "Young"
+names(A007a.Sum) <- gsub("Slc17a6", "VGLUT2", names(A007a.Sum))
+
+A007b.Sum <- read.csv("Young_New_3b_Sum.csv", header = TRUE)
+A007b.Sum$Animal <- "8"
+A007b.Sum$AgeGroup <- "Young"
+names(A007b.Sum) <- gsub("Slc17a6", "VGLUT2", names(A007b.Sum))
+
+A008a.Sum <- read.csv("Young_New_4_Sum.csv", header = TRUE)
+A008a.Sum$Animal <- "9"
+A008a.Sum$AgeGroup <- "Young"
+names(A008a.Sum) <- gsub("Gapdh", "GAPDH", names(A008a.Sum))
+names(A008a.Sum) <- gsub("Rpl6", "RPL6", names(A008a.Sum))
+
+A008b.Sum <- read.csv("Young_New_4b_Sum.csv", header = TRUE)
+A008b.Sum$Animal <- "9"
+A008b.Sum$AgeGroup <- "Young"
+names(A008b.Sum) <- gsub("Slc17a6", "VGLUT2", names(A008b.Sum))
+names(A008b.Sum) <- gsub("Rpl6", "RPL6", names(A008b.Sum))
+
+
+Sum.01.25 <- full_join(A001a.Sum, A001b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A002a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A002b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A003a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A003b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A004a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A004b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A005a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A005b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A005c.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A006a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A007a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A007b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A008a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, A008b.Sum)
+
+
+setwd("/Middle/New")
+
+B001a.Sum <- read.csv("Middle_7a_Sum.csv", header = TRUE)
+B001a.Sum$Animal <- "10"
+B001a.Sum$AgeGroup <- "Middle_Aged"
+names(B001a.Sum) <- gsub("Gadph", "GAPDH", names(B001a.Sum))
+names(B001a.Sum) <- gsub("Th", "TH", names(B001a.Sum))
+names(B001a.Sum) <- gsub("Rpl6", "RPL6", names(B001a.Sum))
+
+B001b.Sum <- read.csv("Middle_7b_Sum.csv", header = TRUE)
+B001b.Sum$Animal <- "10"
+B001b.Sum$AgeGroup <- "Middle_Aged"
+names(B001b.Sum) <- gsub("Gadph", "GAPDH", names(B001b.Sum))
+names(B001b.Sum) <- gsub("Slc17a6", "VGLUT2", names(B001b.Sum))
+names(B001b.Sum) <- gsub("Rpl6", "RPL6", names(B001b.Sum))
+
+B002a.Sum <- read.csv("Middle_8a_Sum.csv", header = TRUE)
+B002a.Sum$Animal <- "11"
+B002a.Sum$AgeGroup <- "Middle_Aged"
+names(B002a.Sum) <- gsub("Gadph", "GAPDH", names(B002a.Sum))
+names(B002a.Sum) <- gsub("Th", "TH", names(B002a.Sum))
+names(B002a.Sum) <- gsub("Rpl6", "RPL6", names(B002a.Sum))
+
+B002b.Sum <- read.csv("Middle_8b_Sum.csv", header = TRUE)
+B002b.Sum$Animal <- "11"
+B002b.Sum$AgeGroup <- "Middle_Aged"
+names(B002b.Sum) <- gsub("Gadph", "GAPDH", names(B002b.Sum))
+names(B002b.Sum) <- gsub("Slc17a6", "VGLUT2", names(B002b.Sum))
+names(B002b.Sum) <- gsub("Rpl6", "RPL6", names(B002b.Sum))
+
+
+B003a.Sum <- read.csv("Middle_9a_Sum.csv", header = TRUE)
+B003a.Sum$Animal <- "12"
+B003a.Sum$AgeGroup <- "Middle_Aged"
+names(B003a.Sum) <- gsub("Gadph", "GAPDH", names(B003a.Sum))
+names(B003a.Sum) <- gsub("Th", "TH", names(B003a.Sum))
+names(B003a.Sum) <- gsub("Rpl6", "RPL6", names(B003a.Sum))
+
+B003b.Sum <- read.csv("Middle_9b_Sum.csv", header = TRUE)
+B003b.Sum$Animal <- "12"
+B003b.Sum$AgeGroup <- "Middle_Aged"
+names(B003b.Sum) <- gsub("Gadph", "GAPDH", names(B003b.Sum))
+names(B003b.Sum) <- gsub("Slc17a6", "VGLUT2", names(B003b.Sum))
+names(B003b.Sum) <- gsub("Rpl6", "RPL6", names(B003b.Sum))
+
+B004a.Sum <- read.csv("Middle_10a_Sum.csv", header = TRUE)
+B004a.Sum$Animal <- "13"
+B004a.Sum$AgeGroup <- "Middle_Aged"
+names(B004a.Sum) <- gsub("Gadph", "GAPDH", names(B004a.Sum))
+names(B004a.Sum) <- gsub("Th", "TH", names(B004a.Sum))
+names(B004a.Sum) <- gsub("Slc17a6", "VGLUT2", names(B004a.Sum))
+names(B004a.Sum) <- gsub("Rpl6", "RPL6", names(B004a.Sum))
+
+B004b.Sum <- read.csv("Middle_10b_Sum.csv", header = TRUE)
+B004b.Sum$Animal <- "13"
+B004b.Sum$AgeGroup <- "Middle_Aged"
+names(B004b.Sum) <- gsub("Gadph", "GAPDH", names(B004b.Sum))
+names(B004b.Sum) <- gsub("Slc17a6", "VGLUT2", names(B004b.Sum))
+names(B004b.Sum) <- gsub("Rpl6", "RPL6", names(B004b.Sum))
+
+B005a.Sum <- read.csv("Middle_New11a_Sum.csv", header = TRUE)
+B005a.Sum$Animal <- "14"
+B005a.Sum$AgeGroup <- "Middle_Aged"
+names(B005a.Sum) <- gsub("Gapdh", "GAPDH", names(B005a.Sum))
+names(B005a.Sum) <- gsub("Th", "TH", names(B005a.Sum))
+names(B005a.Sum) <- gsub("Slc17a6", "VGLUT2", names(B005a.Sum))
+names(B005a.Sum) <- gsub("Rpl6", "RPL6", names(B005a.Sum))
+
+B005b.Sum <- read.csv("Middle_New_11b_Sum.csv", header = TRUE)
+B005b.Sum$Animal <- "14"
+B005b.Sum$AgeGroup <- "Middle_Aged"
+names(B005b.Sum) <- gsub("Gapdh", "GAPDH", names(B005b.Sum))
+names(B005b.Sum) <- gsub("Slc17a6", "VGLUT2", names(B005b.Sum))
+names(B005b.Sum) <- gsub("Rpl6", "RPL6", names(B005b.Sum))
+
+Sum.01.25 <- full_join(Sum.01.25, B001a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, B001b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, B002a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, B002b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, B003a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, B003b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, B004a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, B004b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, B005a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, B005b.Sum)
+
+setwd("/Aged/New")
+
+C001a.Sum <- read.csv("Old_1A_Sum.csv", header = TRUE)
+C001a.Sum$Animal <- "15"
+C001a.Sum$AgeGroup <- "Aged"
+names(C001a.Sum) <- gsub("Gapdh", "GAPDH", names(C001a.Sum))
+names(C001a.Sum) <- gsub("Th", "TH", names(C001a.Sum))
+names(C001a.Sum) <- gsub("Rpl6", "RPL6", names(C001a.Sum))
+names(C001a.Sum) <- gsub("Slc17a6", "VGLUT2", names(C001a.Sum))
+
+C001b.Sum <- read.csv("Old_1B_Sum.csv", header = TRUE)
+C001b.Sum$Animal <- "15"
+C001b.Sum$AgeGroup <- "Aged"
+names(C001b.Sum) <- gsub("Gapdh", "GAPDH", names(C001b.Sum))
+names(C001b.Sum) <- gsub("Slc17a6", "VGLUT2", names(C001b.Sum))
+names(C001b.Sum) <- gsub("Rpl6", "RPL6", names(C001b.Sum))
+
+C002a.Sum <- read.csv("Old_2A_Sum.csv", header = TRUE)
+C002a.Sum$Animal <- "16"
+C002a.Sum$AgeGroup <- "Aged"
+names(C002a.Sum) <- gsub("Gapdh", "GAPDH", names(C002a.Sum))
+names(C002a.Sum) <- gsub("Th", "TH", names(C002a.Sum))
+names(C002a.Sum) <- gsub("Slc17a6", "VGLUT2", names(C002a.Sum))
+names(C002a.Sum) <- gsub("Rpl6", "RPL6", names(C002a.Sum))
+
+C003a.Sum <- read.csv("Old_11_Sum.csv", header = TRUE)
+C003a.Sum$Animal <- "17"
+C003a.Sum$AgeGroup <- "Aged"
+names(C003a.Sum) <- gsub("Gapdh", "GAPDH", names(C003a.Sum))
+names(C003a.Sum) <- gsub("Th", "TH", names(C003a.Sum))
+names(C003a.Sum) <- gsub("Slc17a6", "VGLUT2", names(C003a.Sum))
+names(C003a.Sum) <- gsub("Rpl6", "RPL6", names(C003a.Sum))
+
+C004a.Sum <- read.csv("Old_13_Sum.csv", header = TRUE)
+C004a.Sum$Animal <- "18"
+C004a.Sum$AgeGroup <- "Aged"
+names(C004a.Sum) <- gsub("Gadph", "GAPDH", names(C004a.Sum))
+names(C004a.Sum) <- gsub("Th", "TH", names(C004a.Sum))
+names(C004a.Sum) <- gsub("Slc17a6", "VGLUT2", names(C004a.Sum))
+names(C004a.Sum) <- gsub("Rpl6", "RPL6", names(C004a.Sum))
+
+C005a.Sum <- read.csv("Old_14_Sum.csv", header = TRUE)
+C005a.Sum$Animal <- "19"
+C005a.Sum$AgeGroup <- "Aged"
+names(C005a.Sum) <- gsub("Gadph", "GAPDH", names(C005a.Sum))
+names(C005a.Sum) <- gsub("Th", "TH", names(C005a.Sum))
+names(C005a.Sum) <- gsub("Slc17a6", "VGLUT2", names(C005a.Sum))
+names(C005a.Sum) <- gsub("Rpl6", "RPL6", names(C005a.Sum))
+
+C005b.Sum <- read.csv("Old_14b_Sum.csv", header = TRUE)
+C005b.Sum$Animal <- "19"
+C005b.Sum$AgeGroup <- "Aged"
+names(C005b.Sum) <- gsub("Gadph", "GAPDH", names(C005b.Sum))
+names(C005b.Sum) <- gsub("Th", "TH", names(C005b.Sum))
+names(C005b.Sum) <- gsub("Slc17a6", "VGLUT2", names(C005b.Sum))
+names(C005b.Sum) <- gsub("Rpl6", "RPL6", names(C005b.Sum))
+
+Sum.01.25 <- full_join(Sum.01.25, C001a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, C001b.Sum)
+Sum.01.25 <- full_join(Sum.01.25, C002a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, C003a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, C004a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, C005a.Sum)
+Sum.01.25 <- full_join(Sum.01.25, C005b.Sum)
+
+setwd("")
+write.csv(Sum.01.25, "Sum.01.25.csv")
+```
+
+```{r Importing Merged Files for second set of slides}
+setwd("")
+
+Sum.01.25 <- as.data.frame(read.csv("Sum.01.25.csv"))
+All.01.25 <- as.data.frame(read.csv("All.01.25.csv"))
+
+```
+
+```{r RPL6 Density for second set of slides, echo=TRUE}
+#From Summary, Copies per Total Area Analyzed
+RPL6.per.Area <- Sum.01.25$Total.RPL6.Copies/(Sum.01.25$Area.Analyzed..μm..)*Sum.01.25$Avg.Cell.Area..μm..
+
+#Mean of Copies per Area Analyzed *Avg Cell Area
+Mean.RPL6.per.Area <- mean(RPL6.per.Area, na.rm = TRUE)
+
+#Define Threshold
+Threshold.RPL6 <- 13
+Threshold.TH <- 4
+Threshold.VGLUT2 <- 1
+
+#Identify Total Positive Cells for RPL6
+RPL6.pos.Cells  <- All.01.25 %>% filter(RPL6.Copies >= Threshold.RPL6)
+RPL6.TH.pos.Cells <- All.01.25 %>% filter(RPL6.Copies >= Threshold.RPL6 & TH.Copies >= Threshold.TH & VGLUT2.Copies < Threshold.VGLUT2)
+RPL6.VGLUT2.pos.Cells <- All.01.25 %>% filter(RPL6.Copies >= Threshold.RPL6 & TH.Copies < Threshold.TH & VGLUT2.Copies >= Threshold.VGLUT2)
+```
+
+```{r RPL6-TH Weighted Densities by Age Group for second set of slides, echo=TRUE}
+library(tidyverse)
+library(dplyr)
+library(ggpubr)
+
+#RPL6-TH Positives per Animal
+RPL6.TH.Positives.per.Animal <- All.01.25 %>% group_by(Animal) %>% filter(RPL6.Copies >= Threshold.RPL6 & TH.Copies >= Threshold.TH & VGLUT2.Copies < Threshold.VGLUT2) %>% summarise(count=n()) %>% rename("RPL6.TH.pos.Cells" = "count")
+RPL6.TH.Positives.per.Animal$Animal <- as.numeric(RPL6.TH.Positives.per.Animal$Animal)
+
+#RPL6-VGLUT2 Positives per Animal
+RPL6.VGLUT2.Positives.per.Animal <- All.01.25 %>% group_by(Animal) %>% filter(RPL6.Copies >= Threshold.RPL6 & TH.Copies < Threshold.TH & VGLUT2.Copies >= Threshold.VGLUT2) %>% summarise(count=n()) %>% rename("RPL6.VGLUT2.pos.Cells" = "count")
+RPL6.VGLUT2.Positives.per.Animal$Animal <- as.numeric(RPL6.VGLUT2.Positives.per.Animal$Animal)
+
+
+#RPL6-TH total areas  per animal
+RPL6.TH.Total.Areas.per.Animal <- Sum.01.25 %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+RPL6.TH.Total.Areas.per.Animal$Animal <- as.numeric(RPL6.TH.Total.Areas.per.Animal$Animal)
+
+#RPL6-VGLUT2 total areas  per animal
+RPL6.VGLUT2.Total.Areas.per.Animal <- Sum.01.25 %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+RPL6.VGLUT2.Total.Areas.per.Animal$Animal <- as.numeric(RPL6.VGLUT2.Total.Areas.per.Animal$Animal)
+
+#RPL6-TH Density Calculations
+RPL6.TH.Density.Calcs <- left_join(RPL6.TH.Positives.per.Animal, RPL6.TH.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.RPL6.TH.pos = RPL6.TH.pos.Cells/(Total.Area*20)*1000^3)
+
+RPL6.TH.Density.Calcs.Young <- RPL6.TH.Density.Calcs[which(RPL6.TH.Density.Calcs$AgeGroup == "Young"),]
+RPL6.TH.Density.Calcs.MiddleAged <- RPL6.TH.Density.Calcs[which(RPL6.TH.Density.Calcs$AgeGroup == "Middle_Aged"),]
+RPL6.TH.Density.Calcs.Aged <- RPL6.TH.Density.Calcs[which(RPL6.TH.Density.Calcs$AgeGroup == "Aged"),]
+
+#RPL6-VGLUT2 Density Calculations
+RPL6.VGLUT2.Density.Calcs <- left_join(RPL6.VGLUT2.Positives.per.Animal, RPL6.VGLUT2.Total.Areas.per.Animal, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.RPL6.VGLUT2.pos = RPL6.VGLUT2.pos.Cells/(Total.Area*20)*1000^3)
+
+RPL6.VGLUT2.Density.Calcs.Young <- RPL6.VGLUT2.Density.Calcs[which(RPL6.VGLUT2.Density.Calcs$AgeGroup == "Young"),]
+RPL6.VGLUT2.Density.Calcs.MiddleAged <- RPL6.VGLUT2.Density.Calcs[which(RPL6.VGLUT2.Density.Calcs$AgeGroup == "Middle_Aged"),]
+RPL6.VGLUT2.Density.Calcs.Aged <- RPL6.VGLUT2.Density.Calcs[which(RPL6.VGLUT2.Density.Calcs$AgeGroup == "Aged"),]
+
+#View Weighted RPL6-TH Densities
+print(RPL6.TH.Density.Calcs)
+
+#View Weighted RPL6-VGLUT2 Densities
+print(RPL6.VGLUT2.Density.Calcs)
+
+#Mean of RPL6-TH weighted densities
+Weighted.RPL6.TH.Density <- mean(RPL6.TH.Density.Calcs$Density.RPL6.TH.pos, na.rm = TRUE)
+Weighted.RPL6.TH.Density.Young <- mean(RPL6.TH.Density.Calcs.Young$Density.RPL6.TH.pos, na.rm = TRUE)
+Weighted.RPL6.TH.Density.MiddleAged <- mean(RPL6.TH.Density.Calcs.MiddleAged$Density.RPL6.TH.pos, na.rm = TRUE)
+Weighted.RPL6.TH.Density.Aged <- mean(RPL6.TH.Density.Calcs.Aged$Density.RPL6.TH.pos, na.rm = TRUE)
+
+#Mean of RPL6-VGLUT2 weighted densities
+Weighted.RPL6.VGLUT2.Density <- mean(RPL6.VGLUT2.Density.Calcs$Density.RPL6.VGLUT2.pos, na.rm = TRUE)
+Weighted.RPL6.VGLUT2.Density.Young <- mean(RPL6.VGLUT2.Density.Calcs.Young$Density.RPL6.VGLUT2.pos, na.rm = TRUE)
+Weighted.RPL6.VGLUT2.Density.MiddleAged <- mean(RPL6.VGLUT2.Density.Calcs.MiddleAged$Density.RPL6.VGLUT2.pos, na.rm = TRUE)
+Weighted.RPL6.VGLUT2.Density.Aged <- mean(RPL6.VGLUT2.Density.Calcs.Aged$Density.RPL6.VGLUT2.pos, na.rm = TRUE)
+
+#RPL6-TH Density Table
+RPL6.TH.Dens.Cells <- as.data.frame(matrix(ncol = 5, nrow = 5))
+RPL6.TH.Dens.Cells <- RPL6.TH.Dens.Cells %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+RPL6.TH.Dens.Cells$Animal <- RPL6.TH.Density.Calcs$Animal
+RPL6.TH.Dens.Cells$AgeGroup <-RPL6.TH.Density.Calcs$AgeGroup
+RPL6.TH.Dens.Cells$Total.Area <- RPL6.TH.Density.Calcs$Total.Area
+RPL6.TH.Dens.Cells$Pos <- RPL6.TH.Density.Calcs$RPL6.TH.Positives.per.Animal
+RPL6.TH.Dens.Cells$Density <- RPL6.TH.Density.Calcs$Density.RPL6.TH.pos
+
+print(RPL6.TH.Dens.Cells)
+
+#RPL6-VGLUT2 Density Table
+RPL6.VGLUT2.Dens.Cells <- as.data.frame(matrix(ncol = 5, nrow = 6))
+RPL6.VGLUT2.Dens.Cells <- RPL6.VGLUT2.Dens.Cells %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+RPL6.VGLUT2.Dens.Cells$Animal <- RPL6.VGLUT2.Density.Calcs$Animal
+RPL6.VGLUT2.Dens.Cells$AgeGroup <-RPL6.VGLUT2.Density.Calcs$AgeGroup
+RPL6.VGLUT2.Dens.Cells$Total.Area <- RPL6.VGLUT2.Density.Calcs$Total.Area
+RPL6.VGLUT2.Dens.Cells$Pos <- RPL6.VGLUT2.Density.Calcs$RPL6.VGLUT2.Positives.per.Animal
+RPL6.VGLUT2.Dens.Cells$Density <- RPL6.VGLUT2.Density.Calcs$Density.RPL6.VGLUT2.pos
+
+print(RPL6.VGLUT2.Dens.Cells)
+
+
+RPL6.TH.Dens <- ggplot(RPL6.TH.Dens.Cells, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("RPL6-TH+") + xlab("AgeGroup")
+ggarrange(RPL6.TH.Dens)
+
+RPL6.VGLUT2.Dens <- ggplot(RPL6.VGLUT2.Dens.Cells, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("RPL6-VGLUT2+") + xlab("AgeGroup")
+ggarrange(RPL6.VGLUT2.Dens)
+```
+
+```{r RPL6-TH Weighted Densities by Region for second set of slides, echo=TRUE}
+library(tidyverse)
+library(dplyr)
+
+
+Sum.SNC <- Sum.01.25 %>% filter(Analysis.Region == "SNC")
+Sum.VTA <- Sum.01.25 %>% filter(Analysis.Region == "VTA")
+
+RPL6.TH.per.Area.SNC <- Sum.SNC$Total.RPL6.Copies/(Sum.SNC$Area.Analyzed..μm..)*Sum.SNC$Avg.Cell.Area..μm..
+
+RPL6.TH.per.Area.VTA <- Sum.VTA$Total.RPL6.Copies/(Sum.VTA$Area.Analyzed..μm..)*Sum.VTA$Avg.Cell.Area..μm..
+
+
+#Mean of Copies per Area Analyzed *Avg Cell Area
+Mean.RPL6.TH.per.Area.SNC <- mean(RPL6.TH.per.Area.SNC, na.rm = TRUE)
+Mean.RPL6.TH.per.Area.VTA <- mean(RPL6.TH.per.Area.VTA, na.rm = TRUE)
+
+#Identify Total Positive Cells for RPL6-TH
+RPL6.TH.pos.Cells.SNC  <- All.01.25 %>% filter(RPL6.Copies >= Threshold.RPL6 & Analysis.Region == "SNC" & TH.Copies >= Threshold.TH & VGLUT2.Copies < Threshold.VGLUT2)
+
+RPL6.TH.pos.Cells.VTA <- All.01.25 %>% filter(RPL6.Copies >= Threshold.RPL6 & Analysis.Region == "VTA" & TH.Copies >= Threshold.TH & VGLUT2.Copies < Threshold.VGLUT2)
+
+#RPL6-TH total areas  per animal
+RPL6.TH.Total.Areas.per.Animal.SNC <- Sum.SNC %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+RPL6.TH.Total.Areas.per.Animal.SNC$Animal <- as.numeric(RPL6.TH.Total.Areas.per.Animal.SNC$Animal)
+
+RPL6.TH.Total.Areas.per.Animal.VTA <- Sum.VTA %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area) %>% unique()
+RPL6.TH.Total.Areas.per.Animal.VTA$Animal <- as.numeric(RPL6.TH.Total.Areas.per.Animal.VTA$Animal)
+
+#RPL6-TH Positives per Animal
+RPL6.TH.Positives.per.Animal.SNC <- All.01.25 %>% group_by(Animal) %>% filter(RPL6.Copies >= Threshold.RPL6 & Analysis.Region == "SNC" & TH.Copies >= Threshold.TH & VGLUT2.Copies < Threshold.VGLUT2) %>% summarise(count=n()) %>% rename("RPL6.TH.pos.Cells.SNC" = "count")
+
+RPL6.TH.Positives.per.Animal.SNC$Animal <- as.numeric(RPL6.TH.Positives.per.Animal.SNC$Animal)
+
+RPL6.TH.Positives.per.Animal.VTA <- All.01.25 %>% group_by(Animal) %>% filter(RPL6.Copies >= Threshold.RPL6 & Analysis.Region == "VTA" & TH.Copies >= Threshold.TH & VGLUT2.Copies < Threshold.VGLUT2) %>% summarise(count=n()) %>% rename("RPL6.TH.pos.Cells.VTA" = "count")
+RPL6.TH.Positives.per.Animal.VTA$Animal <- as.numeric(RPL6.TH.Positives.per.Animal.VTA$Animal)
+
+#RPL6-TH total areas per animal
+RPL6.TH.Total.Areas.per.Animal.SNC <- Sum.SNC %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area, Analysis.Region) %>% unique()
+RPL6.TH.Total.Areas.per.Animal.SNC$Animal <- as.numeric(RPL6.TH.Total.Areas.per.Animal.SNC$Animal)
+
+RPL6.TH.Total.Areas.per.Animal.VTA <- Sum.VTA %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area, Analysis.Region) %>% unique()
+RPL6.TH.Total.Areas.per.Animal.VTA$Animal <- as.numeric(RPL6.TH.Total.Areas.per.Animal.VTA$Animal)
+
+
+#RPL6-TH Density Calculations
+RPL6.TH.Density.Calcs.SNC <- left_join(RPL6.TH.Positives.per.Animal.SNC, RPL6.TH.Total.Areas.per.Animal.SNC, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.RPL6.TH.pos.SNC = RPL6.TH.pos.Cells.SNC/(Total.Area*20)*1000^3)
+
+
+
+
+RPL6.TH.Density.Calcs.SNC$Density.RPL6.TH.pos.SNC <- as.numeric(RPL6.TH.Density.Calcs.SNC$Density.RPL6.TH.pos.SNC)
+
+RPL6.TH.Density.Calcs.VTA <- left_join(RPL6.TH.Positives.per.Animal.VTA, RPL6.TH.Total.Areas.per.Animal.VTA, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.RPL6.TH.pos.VTA = RPL6.TH.pos.Cells.VTA/(Total.Area*20)*1000^3)
+RPL6.TH.Density.Calcs.VTA$Density.RPL6.TH.pos.VTA <- as.numeric(RPL6.TH.Density.Calcs.VTA$Density.RPL6.TH.pos.VTA)
+
+print(RPL6.TH.Density.Calcs.SNC)
+print(RPL6.TH.Density.Calcs.VTA)
+
+#Density by Region and Age
+RPL6.TH.Density.Calcs.Young.SNC <- RPL6.TH.Density.Calcs.SNC[which(RPL6.TH.Density.Calcs.SNC$AgeGroup == "Young"),]
+RPL6.TH.Density.Calcs.MiddleAged.SNC <- RPL6.TH.Density.Calcs.SNC[which(RPL6.TH.Density.Calcs.SNC$AgeGroup == "Middle_Aged"),]
+RPL6.TH.Density.Calcs.Aged.SNC <- RPL6.TH.Density.Calcs.SNC[which(RPL6.TH.Density.Calcs.SNC$AgeGroup == "Aged"),]
+
+RPL6.TH.Density.Calcs.Young.VTA <- RPL6.TH.Density.Calcs.VTA[which(RPL6.TH.Density.Calcs.VTA$AgeGroup == "Young"),]
+RPL6.TH.Density.Calcs.MiddleAged.VTA <- RPL6.TH.Density.Calcs.VTA[which(RPL6.TH.Density.Calcs.VTA$AgeGroup == "Middle_Aged"),]
+RPL6.TH.Density.Calcs.Aged.VTA <- RPL6.TH.Density.Calcs.VTA[which(RPL6.TH.Density.Calcs.VTA$AgeGroup == "Aged"),]
+```
+
+```{r RPL6-TH density table for second set of slides}
+#Density Table
+RPL6.TH.Dens.Cells.SNC <- as.data.frame(matrix(ncol = 5, nrow = 4))
+RPL6.TH.Dens.Cells.SNC <- RPL6.TH.Dens.Cells.SNC %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+RPL6.TH.Dens.Cells.SNC$Animal <- RPL6.TH.Density.Calcs.SNC$Animal
+RPL6.TH.Dens.Cells.SNC$AgeGroup <-RPL6.TH.Density.Calcs.SNC$AgeGroup
+RPL6.TH.Dens.Cells.SNC$Total.Area <- RPL6.TH.Density.Calcs.SNC$Total.Area.SNC
+RPL6.TH.Dens.Cells.SNC$Pos <- RPL6.TH.Density.Calcs.SNC$RPL6.TH.Positives.per.Animal.SNC
+RPL6.TH.Dens.Cells.SNC$Density <- RPL6.TH.Density.Calcs.SNC$Density.RPL6.TH.pos.SNC
+
+print(RPL6.TH.Dens.Cells.SNC)
+
+
+RPL6.TH.Dens.SNC <- ggplot(RPL6.TH.Dens.Cells.SNC, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("RPL6+,TH+, VGLUT2-") + xlab("AgeGroup")
+ggarrange(RPL6.TH.Dens.SNC)
+
+#Density Table
+RPL6.TH.Dens.Cells.VTA <- as.data.frame(matrix(ncol = 5, nrow = 5))
+RPL6.TH.Dens.Cells.VTA <- RPL6.TH.Dens.Cells.VTA %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+RPL6.TH.Dens.Cells.VTA$Animal <- RPL6.TH.Density.Calcs.VTA$Animal
+RPL6.TH.Dens.Cells.VTA$AgeGroup <-RPL6.TH.Density.Calcs.VTA$AgeGroup
+RPL6.TH.Dens.Cells.VTA$Total.Area <- RPL6.TH.Density.Calcs.VTA$Total.Area.VTA
+RPL6.TH.Dens.Cells.VTA$Pos <- RPL6.TH.Density.Calcs.VTA$RPL6.TH.Positives.per.Animal.VTA
+RPL6.TH.Dens.Cells.VTA$Density <- RPL6.TH.Density.Calcs.VTA$Density.RPL6.TH.pos.VTA
+
+print(RPL6.TH.Dens.Cells.VTA)
+
+
+RPL6.TH.Dens.VTA <- ggplot(RPL6.TH.Dens.Cells.VTA, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("RPL6+,TH+, VGLUT2-") + xlab("AgeGroup")
+ggarrange(RPL6.TH.Dens.VTA)
+```
+
+```{r RPL6-VGLUT2 Weighted Densities by Region for second set of slides, echo=TRUE}
+library(tidyverse)
+library(dplyr)
+
+Sum.SNC <- Sum.01.25[which(Sum.01.25$Analysis.Region == "SNC"),]
+Sum.VTA <- Sum.01.25[which(Sum.01.25$Analysis.Region == "VTA"),]
+
+RPL6.VGLUT2.per.Area.SNC <- Sum.SNC$Total.RPL6.Copies/(Sum.SNC$Area.Analyzed..μm..)*Sum.SNC$Avg.Cell.Area..μm..
+
+RPL6.VGLUT2.per.Area.VTA <- Sum.VTA$Total.RPL6.Copies/(Sum.VTA$Area.Analyzed..μm..)*Sum.VTA$Avg.Cell.Area..μm..
+
+
+#Mean of Copies per Area Analyzed *Avg Cell Area
+Mean.RPL6.VGLUT2.per.Area.SNC <- mean(RPL6.VGLUT2.per.Area.SNC, na.rm = TRUE)
+Mean.RPL6.VGLUT2.per.Area.VTA <- mean(RPL6.VGLUT2.per.Area.VTA, na.rm = TRUE)
+
+#Identify Total Positive Cells for RPL6-VGLUT2
+RPL6.VGLUT2.pos.Cells.SNC  <- All.01.25 %>% filter(RPL6.Copies >= Threshold.RPL6 & Analysis.Region == "SNC" & TH.Copies < Threshold.TH & VGLUT2.Copies >= Threshold.VGLUT2)
+RPL6.VGLUT2.pos.Cells.VTA <- All.01.25 %>% filter(RPL6.Copies >= Threshold.RPL6 & Analysis.Region == "VTA" & TH.Copies < Threshold.TH & VGLUT2.Copies >= Threshold.VGLUT2)
+
+#RPL6-VGLUT2 Positives per Animal
+RPL6.VGLUT2.Positives.per.Animal.SNC <- All.01.25 %>% group_by(Animal) %>% filter(RPL6.Copies >= Threshold.RPL6 & Analysis.Region == "SNC" & TH.Copies < Threshold.TH & VGLUT2.Copies >= Threshold.VGLUT2) %>% summarise(count=n()) %>% rename("RPL6.VGLUT2.pos.Cells.SNC" = "count")
+RPL6.VGLUT2.Positives.per.Animal.SNC$Animal <- as.numeric(RPL6.VGLUT2.Positives.per.Animal.SNC$Animal)
+
+RPL6.VGLUT2.Positives.per.Animal.VTA <- All.01.25 %>% group_by(Animal) %>% filter(RPL6.Copies >= Threshold.RPL6 & Analysis.Region == "VTA" & TH.Copies < Threshold.TH & VGLUT2.Copies >= Threshold.VGLUT2) %>% summarise(count=n()) %>% rename("RPL6.VGLUT2.pos.Cells.VTA" = "count")
+RPL6.VGLUT2.Positives.per.Animal.VTA$Animal <- as.numeric(RPL6.VGLUT2.Positives.per.Animal.VTA$Animal)
+
+#RPL6-VGLUT2 total areas per animal
+RPL6.VGLUT2.Total.Areas.per.Animal.SNC <- Sum.SNC %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area, Analysis.Region) %>% unique()
+RPL6.VGLUT2.Total.Areas.per.Animal.SNC$Animal <- as.numeric(RPL6.VGLUT2.Total.Areas.per.Animal.SNC$Animal)
+
+RPL6.VGLUT2.Total.Areas.per.Animal.VTA <- Sum.VTA %>% group_by(Animal) %>% mutate(Total.Area = sum(Area.Analyzed..μm..)) %>% select(Animal, AgeGroup, Total.Area, Analysis.Region) %>% unique()
+RPL6.VGLUT2.Total.Areas.per.Animal.VTA$Animal <- as.numeric(RPL6.VGLUT2.Total.Areas.per.Animal.VTA$Animal)
+
+
+#RPL6-VGLUT2 Density Calculations
+RPL6.VGLUT2.Density.Calcs.SNC <- left_join(RPL6.VGLUT2.Positives.per.Animal.SNC, RPL6.VGLUT2.Total.Areas.per.Animal.SNC, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.RPL6.VGLUT2.pos.SNC = RPL6.VGLUT2.pos.Cells.SNC/(Total.Area*20)*1000^3)
+RPL6.VGLUT2.Density.Calcs.SNC$Density.RPL6.VGLUT2.pos.SNC <- as.numeric(RPL6.VGLUT2.Density.Calcs.SNC$Density.RPL6.VGLUT2.pos.SNC)
+
+RPL6.VGLUT2.Density.Calcs.VTA <- left_join(RPL6.VGLUT2.Positives.per.Animal.VTA, RPL6.VGLUT2.Total.Areas.per.Animal.VTA, by=c("Animal"= "Animal")) %>% arrange(desc(-Animal)) %>% mutate(Density.RPL6.VGLUT2.pos.VTA = RPL6.VGLUT2.pos.Cells.VTA/(Total.Area*20)*1000^3)
+RPL6.VGLUT2.Density.Calcs.VTA$Density.RPL6.VGLUT2.pos.VTA <- as.numeric(RPL6.VGLUT2.Density.Calcs.VTA$Density.RPL6.VGLUT2.pos.VTA)
+
+print(RPL6.VGLUT2.Density.Calcs.SNC)
+print(RPL6.VGLUT2.Density.Calcs.VTA)
+
+#Density by Region and Age
+RPL6.VGLUT2.Density.Calcs.Young.SNC <- RPL6.VGLUT2.Density.Calcs.SNC[which(RPL6.VGLUT2.Density.Calcs.SNC$AgeGroup == "Young"),]
+RPL6.VGLUT2.Density.Calcs.MiddleAged.SNC <- RPL6.VGLUT2.Density.Calcs.SNC[which(RPL6.VGLUT2.Density.Calcs.SNC$AgeGroup == "Middle_Aged"),]
+RPL6.VGLUT2.Density.Calcs.Aged.SNC <- RPL6.VGLUT2.Density.Calcs.SNC[which(RPL6.VGLUT2.Density.Calcs.SNC$AgeGroup == "Aged"),]
+
+RPL6.VGLUT2.Density.Calcs.Young.VTA <- RPL6.VGLUT2.Density.Calcs.VTA[which(RPL6.VGLUT2.Density.Calcs.VTA$AgeGroup == "Young"),]
+RPL6.VGLUT2.Density.Calcs.MiddleAged.VTA <- RPL6.VGLUT2.Density.Calcs.VTA[which(RPL6.VGLUT2.Density.Calcs.VTA$AgeGroup == "Middle_Aged"),]
+RPL6.VGLUT2.Density.Calcs.Aged.VTA <- RPL6.VGLUT2.Density.Calcs.VTA[which(RPL6.VGLUT2.Density.Calcs.VTA$AgeGroup == "Aged"),]
+
+
+
+```
+
+```{r RPL6-VGLUT2 density table for second set of slides}
+#Density Table
+RPL6.VGLUT2.Dens.Cells.SNC <- as.data.frame(matrix(ncol = 5, nrow = 5))
+RPL6.VGLUT2.Dens.Cells.SNC <- RPL6.VGLUT2.Dens.Cells.SNC %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+RPL6.VGLUT2.Dens.Cells.SNC$Animal <- RPL6.VGLUT2.Density.Calcs$Animal
+RPL6.VGLUT2.Dens.Cells.SNC$AgeGroup <-RPL6.VGLUT2.Density.Calcs$AgeGroup
+RPL6.VGLUT2.Dens.Cells.SNC$Total.Area <- RPL6.VGLUT2.Density.Calcs$Total.Area
+RPL6.VGLUT2.Dens.Cells.SNC$Pos <- RPL6.VGLUT2.Density.Calcs.SNC$RPL6.VGLUT2.Positives.per.Animal
+RPL6.VGLUT2.Dens.Cells.SNC$Density <- RPL6.VGLUT2.Density.Calcs$Density.RPL6.VGLUT2.pos
+
+print(RPL6.VGLUT2.Dens.Cells.SNC)
+
+
+RPL6.VGLUT2.Dens.SNC <- ggplot(RPL6.VGLUT2.Dens.Cells.SNC, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("RPL6+,TH-,VGLUT2+") + xlab("AgeGroup")
+ggarrange(RPL6.VGLUT2.Dens.SNC)
+
+#Density Table
+RPL6.VGLUT2.Dens.Cells.VTA <- as.data.frame(matrix(ncol = 5, nrow = 5))
+RPL6.VGLUT2.Dens.Cells.VTA <- RPL6.VGLUT2.Dens.Cells.VTA %>% rename("Animal" = "V1",
+               "AgeGroup" = "V2",
+               "Total.Area" = "V3",
+               "Pos" = "V4",
+               "Density" = "V5")
+
+RPL6.VGLUT2.Dens.Cells.VTA$Animal <- RPL6.VGLUT2.Density.Calcs$Animal
+RPL6.VGLUT2.Dens.Cells.VTA$AgeGroup <-RPL6.VGLUT2.Density.Calcs$AgeGroup
+RPL6.VGLUT2.Dens.Cells.VTA$Total.Area <- RPL6.VGLUT2.Density.Calcs$Total.Area
+RPL6.VGLUT2.Dens.Cells.VTA$Pos <- RPL6.VGLUT2.Density.Calcs.VTA$RPL6.VGLUT2.Positives.per.Animal
+RPL6.VGLUT2.Dens.Cells.VTA$Density <- RPL6.VGLUT2.Density.Calcs$Density.RPL6.VGLUT2.pos
+
+print(RPL6.VGLUT2.Dens.Cells.VTA)
+
+
+RPL6.VGLUT2.Dens.VTA <- ggplot(RPL6.VGLUT2.Dens.Cells.VTA, aes(fill=AgeGroup, y=Density, x=fct_rev(AgeGroup))) + geom_bar(position="dodge", stat="identity") + ggtitle("RPL6+,TH-,VGLUT2+") + xlab("AgeGroup")
+ggarrange(RPL6.VGLUT2.Dens.VTA)
+```
